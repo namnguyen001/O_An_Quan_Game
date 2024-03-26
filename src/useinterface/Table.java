@@ -2,26 +2,25 @@ package useinterface;
 
 import javax.swing.*;
 import java.awt.*;
-public class Interface {
+public class Table {
     public static int WIDTH = 100, HEIGHT = 100, HEIGHT_QUAN = 200, X = 100, Y = 100;
-	public static final int[] coordinatesX = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-	    ,0,0,0,0,0,0,0,0,0,0,};
-	public static final int[] coordinatesY = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-	    ,0,0,0,0,0,0,0,0,0,0, };
-	private Box[] boxs;
+	// public static final int[] coordinatesX = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+	//     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+	//     ,1,1,1,1,1,1,1,1,1,1};
+	// public static final int[] coordinatesY = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+	//     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+	//     ,1,1,1,1,1,1,1,1,1,1};
+	private Box[] boxs =  new Box[14];;
 	private Square[] squares;
 
-	public Interface(Square[] squares) {
+	public Table(Square[] squares) {
 		this.squares = squares;
 		createBanco();
 	}
 
 	public void createBanco() {
-		boxs = new Box[14];
 		for (int i = 1; i < 6; i++) {
-		boxs[i] = new Box( X, Y , WIDTH, HEIGHT, squares[i].getViTri(), squares[i].getGiatri(),
+		boxs[i] = new Box( X +i*WIDTH, Y , WIDTH, HEIGHT, squares[i].getViTri(), squares[i].getGiatri(),
 					squares[i].isQuan());
 		}
 		boxs[7] = new Box(X  , Y , WIDTH, HEIGHT, squares[7].getViTri(), squares[7].getGiatri(),
@@ -49,5 +48,16 @@ public class Interface {
 			boxs[i].draw(g2d);
 		}
 	}
+// 	public void paint(Graphics g){
+//         Graphics2D g2 = (Graphics2D)g;  
+//         	for (int i = 0; i < boxs.length; i++) {
+// 			boxs[i].draw(g2);
+// 		}
+//         g2.dispose();
+//    }
+
+    public void setSquares(Square[] squares) {
+	this.squares = squares;
+}
 
 }

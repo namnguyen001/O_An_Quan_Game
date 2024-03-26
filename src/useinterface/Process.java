@@ -20,6 +20,7 @@ public class Process {
 		squares[12] = new Square(12, 0, false);
 		squares[13] = new Square(13, 0, false);
 	}
+	
     public Square[] getSquares() {
 		return squares;
 	}

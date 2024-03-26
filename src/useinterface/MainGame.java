@@ -22,7 +22,7 @@ public class MainGame extends JFrame{
         this.setBounds((dimension.width - SCREEN_WIDTH) / 2, (dimension.height - SCREEN_HEIGHT) / 2, SCREEN_WIDTH,
                 SCREEN_HEIGHT);
        gamePanel = new GamePanel();
-       this.add(gamePanel, BorderLayout.CENTER);
+       add(gamePanel);
         // Tạo controller và thêm MenuBar
         menuControl = new MenuController(this);
         this.setJMenuBar(menuControl.getMenu());
