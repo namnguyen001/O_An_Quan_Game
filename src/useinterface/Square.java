@@ -1,7 +1,11 @@
 package useinterface;
 
 public class Square {
+<<<<<<< HEAD
     private int vitri; //vi trí của ô
+=======
+    private int vitri; 
+>>>>>>> 40008f4 (ve ban co)
 	private int giatri;
     private boolean isquan;
     public Square(int vitri, int giatri, boolean isquan) {

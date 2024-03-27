@@ -4,11 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Box {
+<<<<<<< HEAD
     private int x, y, width=20, height=20;
+=======
+    private int x, y, width = 20, height = 20;
+>>>>>>> 40008f4 (ve ban co)
     private int vitri, giatri;
     private boolean isquan;
     private Image imagesquare;
     private Image imageleft, imageright;
+<<<<<<< HEAD
+=======
+    private Image imagebox1, imagebox2, flag;
+>>>>>>> 40008f4 (ve ban co)
 
     public Box(int x, int y, int width, int height, int vitri, int giatri, boolean isquan) {
         this.x = x;
@@ -19,6 +27,7 @@ public class Box {
         this.giatri = giatri;
         this.isquan = isquan;
         getImage();
+<<<<<<< HEAD
         // imagesquare = loadImage("square.jpg");// hình ô dân
         // imageleft = loadImage("src//images//square.jpg"); // hình ô quan trái
         // imageright = loadImage("src//images//square.jpg"); // hình ô quan phải
@@ -31,6 +40,18 @@ public class Box {
             imagesquare = new ImageIcon("src/images/square.jpg").getImage(); // Load square image
             // imageleft = new ImageIcon("src/images/left.jpg").getImage(); // Load left image
             // imageright = new ImageIcon("src/images/right.jpg").getImage(); // Load right image
+=======
+    }
+
+    public void getImage() {
+        try {
+            imagesquare = new ImageIcon("src/images/square.png").getImage(); // Load square image
+            imageleft = new ImageIcon("src/images/left.jpg").getImage(); // Load left image
+            imageright = new ImageIcon("src/images/right.jpg").getImage(); // Load right image
+            imagebox2 = new ImageIcon("src/images/box2.jpg").getImage(); // Load box2 image
+            imagebox1 = new ImageIcon("src/images/box1.jpg").getImage(); // Load box1 image
+            flag = new ImageIcon("src/images/flag.jpg").getImage(); // Load flag image
+>>>>>>> 40008f4 (ve ban co)
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,6 +60,7 @@ public class Box {
     public void draw(Graphics2D g2d) {
         if (!isquan && vitri != 12 && vitri != 13) {
             g2d.drawImage(imagesquare, x, y, width, height, null);
+<<<<<<< HEAD
             // g2d.drawString(giatri + "", x, y);
             // } else if (isquan = true) {
             // g2d.drawImage(imageleft, x, y, width, height, null);
@@ -50,3 +72,19 @@ public class Box {
         }
     }
 }
+=======
+            g2d.drawString(giatri + "", x, y);
+        } else if (isquan) {
+            if (vitri == 0) {
+                g2d.drawImage(imageleft, x, y, width, height, null);
+            } else {
+                g2d.drawImage(imageright, x, y, width, height, null);
+            }
+        } else if (vitri == 12){
+                g2d.drawImage(imagebox1, x, y, width, height, null);
+            }  else {
+                g2d.drawImage(imagebox2, x, y, width, height, null);
+        }
+    }
+}
+>>>>>>> 40008f4 (ve ban co)
