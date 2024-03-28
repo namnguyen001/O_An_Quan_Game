@@ -10,6 +10,8 @@ public class MainGame extends JFrame{
     private JLabel jlabel;
     private MenuController menuControl;
     private GamePanel gamePanel;
+    private static int currentTeam=0;
+    
 
 	public MainGame() {
         this.setTitle("Ô Ăn Quan");
@@ -30,4 +32,8 @@ public class MainGame extends JFrame{
     public void setTextJlabel(String s) {
     	this.jlabel.setText(s);
     }    
+    
+    public static int getCurTeam() {
+		return currentTeam;
+	}
 }       

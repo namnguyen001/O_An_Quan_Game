@@ -6,12 +6,9 @@ public class Table extends JFrame{
 
     public static int WIDTH = 100, HEIGHT = 100, HEIGHT_QUAN = 200, X=140 , Y=140;
     
-	 public static final int[] coordinatesX = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-	     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-	     ,1,1,1,1,1,1,1,1,1,1};
-	 public static final int[] coordinatesY = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-	     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-	     ,1,1,1,1,1,1,1,1,1,1};
+    public static final int[] coordinatesX = {20,60,40,20,60,50,80,60,70,60};
+	 public static final int[] coordinatesY = {20,20,50,80,80,120,30,60,65,-5};
+    
 	private Box[] boxs =  new Box[14];;
 	private Square[] squares;
 

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import controller.Process;
+import gameinterface.Table;
 import gameinterface.*;
 
 public class GamePanel extends JPanel{
