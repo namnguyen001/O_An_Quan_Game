@@ -2,9 +2,9 @@ package useinterface;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import gameinterface.*;
 import javax.swing.JPanel;
 import controller.Process;
+import gameinterface.*;
 
 public class GamePanel extends JPanel{
     private Table table;
