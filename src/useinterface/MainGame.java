@@ -2,6 +2,7 @@ package useinterface;
 
 import javax.swing.*;
 import java.awt.*;
+import controller.Process;
 
 public class MainGame extends JFrame{
     
@@ -11,6 +12,7 @@ public class MainGame extends JFrame{
     private MenuController menuControl;
     private GamePanel gamePanel;
     private static int currentTeam=0;
+    private Process process;
     
 
 	public MainGame() {
@@ -36,4 +38,5 @@ public class MainGame extends JFrame{
     public static int getCurTeam() {
 		return currentTeam;
 	}
+    
 }       

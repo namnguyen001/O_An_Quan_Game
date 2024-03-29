@@ -51,8 +51,4 @@ public class Square {
 		lArrow.setVisible(false);
 		mainGame.repaint();
 	}
-	public void change(int i) {
-		// TODO Auto-generated method stub
-		
-	}
 }
