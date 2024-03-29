@@ -2,6 +2,7 @@ package gameinterface;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 public class Table extends JFrame{
 
     public static int WIDTH = 100, HEIGHT = 100, HEIGHT_QUAN = 200, X=140 , Y=140;
@@ -44,17 +45,20 @@ public class Table extends JFrame{
 	            squares[13].isQuan());
 	}
 
-
-
-
 	public void draw(Graphics2D g2d) {
 		for (int i = 0; i < boxs.length; i++) {
 			boxs[i].draw(g2d);
 		}
 	}
-
+	public void mousePressed(MouseEvent e) {
+		for (int i = 0; i < boxs.length; i++) {
+			boxs[i].mousePressed(e);
+		}
+	}
+	
     public void setSquares(Square[] squares) {
 	this.squares = squares;
-}
-
+	}
+	
+	
 }

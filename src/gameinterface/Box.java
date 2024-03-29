@@ -5,20 +5,23 @@ import controller.Process;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+
 import useinterface.*;
 import gameinterface.*;
 
 public class Box {
-	private int x, y, width = 20, height = 20;
+	private int x, y, width , height ;
 	private int vitri, giatri;
 	private boolean isquan;
 	private Image imagesquare;
-	private Image imageleft, imageright;
+	private Image imageleft, imageright,buttonImage,imagebox;
 	private Image imagebox1, imagebox2, flag;
 	private JButton boxBtn, lArrow, rArrow;
 	private static Font fontArrow;
 	private JLabel numLabel = new JLabel("5");
 	private MainGame mainGame;
+	private boolean enter;
 
 	public Box(int x, int y, int width, int height, int vitri, int giatri, boolean isquan) {
 		this.x = x;
@@ -29,16 +32,18 @@ public class Box {
 		this.giatri = giatri;
 		this.isquan = isquan;
 		getImage();
+		imagesquare = imagebox;
 	}
 
 	public void getImage() {
 		try {
-			imagesquare = new ImageIcon("src/images/square.png").getImage(); // Load square image
+			imagebox = new ImageIcon("src/images/square.png").getImage(); // Load square image
 			imageleft = new ImageIcon("src/images/left.jpg").getImage(); // Load left image
 			imageright = new ImageIcon("src/images/right.jpg").getImage(); // Load right image
 			imagebox2 = new ImageIcon("src/images/box2.jpg").getImage(); // Load box2 image
 			imagebox1 = new ImageIcon("src/images/box1.jpg").getImage(); // Load box1 image
 			flag = new ImageIcon("src/images/flag.jpg").getImage(); // Load flag image
+			buttonImage = new ImageIcon("src/images/square.jpg").getImage();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,5 +76,16 @@ public class Box {
 		}
 	}
 
-
+    
+	public void mousePressed(MouseEvent e) {
+		if(vitri != 12 && vitri !=13 && vitri >6 && vitri >0 ){
+			Point p = e.getPoint();
+			int px = (int) p.getX();
+			int py = (int) p.getY();
+			if ((px >= x && px <= x + width) && (py >= y && py <= y + height)) {
+				imagesquare = buttonImage;
+				
+			}
+		}
+	}
 }
