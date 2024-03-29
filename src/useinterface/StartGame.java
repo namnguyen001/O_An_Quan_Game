@@ -2,8 +2,8 @@ package useinterface;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StartGame extends JFrame {
 
@@ -38,7 +38,7 @@ public class StartGame extends JFrame {
         JButton btnNewButton = new JButton("New Game");
         btnNewButton.setBounds(194, 181, 85, 21);
         getContentPane().add(btnNewButton);
-        
+
         JLabel lblNewLabel = new JLabel("Ô ĂN QUAN\r\n");
         lblNewLabel.setForeground(new Color(0, 0, 0));
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
@@ -46,22 +46,16 @@ public class StartGame extends JFrame {
         getContentPane().add(lblNewLabel);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       
+
         setSize(500, 462);
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
         setVisible(true);
-        
+        setResizable(false);
+
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new MainGame().setVisible(true);
-            }
-        });
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new StartGame();
+                MainGame mainGame = new MainGame();
+                mainGame.setVisible(true);
             }
         });
     }
