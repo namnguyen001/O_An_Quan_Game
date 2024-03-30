@@ -59,7 +59,7 @@ public class Box {
 		} else {
 			g2d.drawImage(imagebox2, x, y, width, height, null);
 		}
-		g2d.setColor(Color.decode("#48423f"));
+		g2d.setColor(Color.decode("#48423d"));
 		if (isquan) {
 			for (int i = 0; i < giatri; i++) {
 				g2d.fillOval(x+ Table.coordinatesX[i], y + Table.coordinatesY[i] + 40 , 13, 10);
@@ -73,11 +73,21 @@ public class Box {
 
 	public void mouseEntered(MouseEvent e) {
 		if(!isquan && vitri != 12 && vitri !=13 && vitri > 6 && vitri >0 ){
-			Point p = e.getPoint();
+			Point p = e.getPoint(); // Lấy tọa độ chuột
 			int px = (int) p.getX();
 			int py = (int) p.getY();
 			if ((px >= x && px <= x + width) && (py >= y && py <= y + height)) {
 				imagesquare= buttonImage;
+			}
+		}
+	}
+	public void mousePressed(MouseEvent e){
+		if(!isquan && vitri != 12 && vitri !=13 && vitri > 6 && vitri >0 ){
+			Point p = e.getPoint(); // Lấy tọa độ chuột
+			int px = (int) p.getX();
+			int py = (int) p.getY();
+			if ((px >= x && px <= x + width) && (py >= y && py <= y + height)) {
+				
 			}
 		}
 	}

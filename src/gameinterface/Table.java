@@ -80,6 +80,8 @@ public class Table extends JFrame{
 			boxs[i].mouseReleased(e);
 		}
 	}
-	
+	 public void mousePressed(MouseEvent e){
+		
+	 }
 	
 }
