@@ -22,6 +22,7 @@ public class MainGame extends JFrame {
 
         gamePanel = new GamePanel();
         add(gamePanel);
+        
         menuControl = new MenuController(this);
         this.setJMenuBar(menuControl.getMenu());
         this.setVisible(true);
@@ -31,10 +32,6 @@ public class MainGame extends JFrame {
         this.jlabel.setText(s);
     }
 
-    public static void main(String[] args) {
-        StartGame startGame = new StartGame();
-        startGame.setVisible(true);
-    }
 
     void showMore() {
         String s = "Trò chơi mô phỏng ô ăn quan.\nTác giả: NG\nChúc các bạn vui vẻ.";

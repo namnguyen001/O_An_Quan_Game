@@ -39,22 +39,25 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void mousePressed(MouseEvent e) {
         // Xử lý sự kiện khi chuột được nhấn xuống
-        table.mousePressed(e);
+        
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         // Xử lý sự kiện khi chuột được nhả ra
+        table.mouseReleased(e);
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
         // Xử lý sự kiện khi chuột đi vào
+        table.mouseEntered(e);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         // Xử lý sự kiện khi chuột đi ra khỏi vùng GamePanel
+        table.mouseExited(e);
     }
 
     @Override
@@ -65,5 +68,6 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void mouseMoved(MouseEvent e) {
         // Xử lý sự kiện khi chuột được di chuyển (không nhấn)
+        table.mouseMoved(e);
     }   
 }

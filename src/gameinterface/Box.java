@@ -17,10 +17,6 @@ public class Box {
 	private Image imagesquare;
 	private Image imageleft, imageright,buttonImage,imagebox;
 	private Image imagebox1, imagebox2, flag;
-	private JButton boxBtn, lArrow, rArrow;
-	private static Font fontArrow;
-	private JLabel numLabel = new JLabel("5");
-	private MainGame mainGame;
 	private boolean enter;
 
 	public Box(int x, int y, int width, int height, int vitri, int giatri, boolean isquan) {
@@ -43,7 +39,7 @@ public class Box {
 			imagebox2 = new ImageIcon("src/images/box2.jpg").getImage(); // Load box2 image
 			imagebox1 = new ImageIcon("src/images/box1.jpg").getImage(); // Load box1 image
 			flag = new ImageIcon("src/images/flag.jpg").getImage(); // Load flag image
-			buttonImage = new ImageIcon("src/images/square.jpg").getImage();
+			buttonImage = new ImageIcon("src/images/stone.jpg").getImage();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -52,7 +48,6 @@ public class Box {
 	public void draw(Graphics2D g2d) {
 		if (!isquan && vitri != 12 && vitri != 13) {
 			g2d.drawImage(imagesquare, x, y, width, height, null);
-			g2d.drawString(giatri + "", x, y);
 		} else if (isquan) {
 			if (vitri == 0) {
 				g2d.drawImage(imageleft, x, y, width, height, null);
@@ -76,16 +71,47 @@ public class Box {
 		}
 	}
 
-    
-	public void mousePressed(MouseEvent e) {
-		if(vitri != 12 && vitri !=13 && vitri >6 && vitri >0 ){
+	public void mouseEntered(MouseEvent e) {
+		if(!isquan && vitri != 12 && vitri !=13 && vitri > 6 && vitri >0 ){
+			Point p = e.getPoint();
+			int px = (int) p.getX();
+			int py = (int) p.getY();
+			if ((px >= x && px <= x + width) && (py >= y && py <= y + height)) {
+				imagesquare= buttonImage;
+			}
+		}
+	}
+	public void mouseExited(MouseEvent e) {
+		if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && giatri > 0) {
+			Point p = e.getPoint();// Lấy tọa độ chuột
+			int px = (int) p.getX();// tọa độ x
+			int py = (int) p.getY();// tọa độ y
+			if ((px <= x || px >= x + width) || (py <= y || py >= y + height)) {
+				imagesquare = imagebox;
+			}
+		}
+	}
+	
+	public void mouseReleased(MouseEvent e) {
+		if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && giatri > 0) {
 			Point p = e.getPoint();
 			int px = (int) p.getX();
 			int py = (int) p.getY();
 			if ((px >= x && px <= x + width) && (py >= y && py <= y + height)) {
 				imagesquare = buttonImage;
-				
+			} else {
+				imagesquare = imagebox;
 			}
+		}
+	}
+
+	public void mouseDragged(MouseEvent e) {
+	}
+
+	public void mouseMoved(MouseEvent e) {
+		if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && giatri > 0) {
+			mouseEntered(e);
+			mouseExited(e);
 		}
 	}
 }

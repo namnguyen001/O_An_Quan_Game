@@ -50,14 +50,35 @@ public class Table extends JFrame{
 			boxs[i].draw(g2d);
 		}
 	}
-	public void mousePressed(MouseEvent e) {
+	public void setSquares(Square[] squares) {
+		this.squares = squares;
+	}
+
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	public void mouseEntered(MouseEvent e) {
 		for (int i = 0; i < boxs.length; i++) {
-			boxs[i].mousePressed(e);
+			boxs[i].mouseEntered(e);
 		}
 	}
-	
-    public void setSquares(Square[] squares) {
-	this.squares = squares;
+
+	public void mouseExited(MouseEvent e){
+		for (int i = 0; i < boxs.length; i++) {
+			boxs[i].mouseExited(e);
+		}
+	}
+
+	public void mouseMoved(MouseEvent e) {
+		mouseEntered(e);
+		mouseExited(e);
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		for (int i = 0; i < boxs.length; i++) {
+			boxs[i].mouseReleased(e);
+		}
 	}
 	
 	
