@@ -50,6 +50,7 @@ public class StartGame extends JFrame {
         setSize(500, 462);
         setLocationRelativeTo(null); 
         setVisible(true);
+        setResizable(false);
         
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

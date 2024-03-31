@@ -19,19 +19,14 @@ public class MenuController implements ActionListener {
         menu = new JMenu("Menu");
         help = new JMenu("Help");
         GameMoi = new JMenuItem("New Game");
-        GameMoi.setActionCommand("GameMoi"); // Set action command
         GameMoi.addActionListener(this);
         Thoat = new JMenuItem("Exit");
-        Thoat.setActionCommand("Thoat"); // Set action command
         Thoat.addActionListener(this);
         CaiDat = new JMenuItem("Setting");
-        CaiDat.setActionCommand("CaiDat"); // Set action command
         CaiDat.addActionListener(this);
         Luat = new JMenuItem("Rule");
-        Luat.setActionCommand("Luat"); // Set action command
         Luat.addActionListener(this);
         Them = new JMenuItem("More");
-        Them.setActionCommand("Them"); // Set action command
         Them.addActionListener(this);
         menu.add(GameMoi);
         menu.add(CaiDat);
@@ -61,6 +56,5 @@ public class MenuController implements ActionListener {
         if (e.getSource() == Luat) {
             mainGame.showRule();
         }
-        // Add conditions for other menu items if needed
     }
 }

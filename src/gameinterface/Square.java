@@ -13,8 +13,7 @@ public class Square {
 	private int giatri;
     private boolean isquan;
     private JButton boxBtn;
-	private static JButton lArrow;
-	private static JButton rArrow;
+	private boolean isArrowVisible;
 	private static MainGame mainGame;
     
     
@@ -46,9 +45,8 @@ public class Square {
 	public void setViTri(int vitri) {
 		this.vitri = vitri;
 	}
-	public static void removeArrow() {
-		rArrow.setVisible(false);
-		lArrow.setVisible(false);
-		mainGame.repaint();
+	public boolean isArrowVisible() {
+		return isArrowVisible = true;
+		
 	}
 }
