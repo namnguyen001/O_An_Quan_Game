@@ -63,14 +63,12 @@ public class Table extends JFrame {
 	public void mouseEntered(MouseEvent e) {
 		for (int i = 0; i < boxs.length; i++) {
 			boxs[i].mouseEntered(e);
-			boxs[i].showArrow();
 		}
 	}
 
 	public void mouseExited(MouseEvent e) {
 		for (int i = 0; i < boxs.length; i++) {
 			boxs[i].mouseExited(e);
-			boxs[i].hideArrow();
 		}
 	}
 
@@ -83,14 +81,12 @@ public class Table extends JFrame {
 	public void mouseReleased(MouseEvent e) {
 		for (int i = 0; i < boxs.length; i++) {
 			boxs[i].mouseReleased(e);
-			boxs[i].hideArrow();
 		}
 	}
 
 	public void mousePressed(MouseEvent e) {
 		for (int i = 0; i < boxs.length; i++) {
 			boxs[i].mousePressed(e);
-			boxs[i].showArrow();
 		}
 		repaint();
 	}

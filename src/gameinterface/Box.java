@@ -28,7 +28,6 @@ public class Box {
         getImage();
         imagesquare = imagebox;
         this.isArrowVisible = isArrowVisible; 
-        createArrows();
     }
 
     public void getImage() {
@@ -39,7 +38,9 @@ public class Box {
             imagebox2 = new ImageIcon("src/images/box2.jpg").getImage(); // Load box2 image
             imagebox1 = new ImageIcon("src/images/box1.jpg").getImage(); // Load box1 image
             flag = new ImageIcon("src/images/flag.jpg").getImage(); // Load flag image
-            buttonImage = new ImageIcon("src/images/stone.jpg").getImage();
+            buttonImage = new ImageIcon("src/images/square.jpg").getImage();
+            leftArrow = new ImageIcon("src/images/aleft.jpg").getImage();
+            rightArrow = new ImageIcon("src/images/aright.jpg").getImage();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,10 +49,6 @@ public class Box {
     public void draw(Graphics2D g2d) {
         if (!isquan && vitri != 12 && vitri != 13) {
             g2d.drawImage(imagesquare, x, y, width, height, null);
-            if(isArrowVisible==true) {
-           	    g2d.drawImage(leftArrow, x, y, null);
-            	g2d.drawImage(rightArrow, x, y, null);
-            }
         } else if (isquan) {
             if (vitri == 0) {
                 g2d.drawImage(imageleft, x, y, width, height, null);
@@ -60,9 +57,6 @@ public class Box {
             }
         } else if (vitri == 12) {
             g2d.drawImage(imagebox1, x, y, width, height, null);
-        }else if(isArrowVisible==true) {
-       	    g2d.drawImage(leftArrow, x, y, null);
-        	g2d.drawImage(rightArrow, x, y, null);
         }
         else {
             g2d.drawImage(imagebox2, x, y, width, height, null);
@@ -77,20 +71,10 @@ public class Box {
                 g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i], 13, 10);
             }
         }
-    }
-
-
-    public void showArrow() {
-        isArrowVisible= true;
-    }
-
-    public void hideArrow() {
-        isArrowVisible= false;
-    }
-
-    private void createArrows() {
-        leftArrow = new ImageIcon("src/images/stone.jpg").getImage();
-        rightArrow = new ImageIcon("src/images/stone.png").getImage();
+        if (isArrowVisible) {
+            g2d.drawImage(leftArrow,x+2,y+35,35,30,null);
+            g2d.drawImage(rightArrow,x+57,y+35,35,30,null);
+        }
     }
 
     public void mouseEntered(MouseEvent e) {
@@ -100,9 +84,10 @@ public class Box {
             int py = (int) p.getY();
             if ((px >= x && px <= x + width) && (py >= y && py <= y + height)) {
                 imagesquare = buttonImage;
+                isArrowVisible = true;
             }
         }
-        showArrow();
+        
     }
 
     public void mousePressed(MouseEvent e) {
@@ -113,8 +98,6 @@ public class Box {
     	    if ((px >= x && px <= x + width) && (py >= y && py <= y + height)) {
     	      imagesquare = buttonImage; 
     	    }
-    	    showArrow();
-    	    System.out.println("123");
     	  }
     	}
 
@@ -126,7 +109,7 @@ public class Box {
             int py = (int) p.getY();// tọa độ y
             if ((px <= x || px >= x + width) || (py <= y || py >= y + height)) {
                 imagesquare = imagebox;
-                hideArrow();
+                isArrowVisible = false;
             }
         }
     }
@@ -142,7 +125,7 @@ public class Box {
                 imagesquare = imagebox;
             }
         }
-        hideArrow();
+
     }
 
     public void mouseDragged(MouseEvent e) {
@@ -152,7 +135,6 @@ public class Box {
         if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && giatri > 0) {
             mouseEntered(e);
             mouseExited(e);
-            hideArrow();
         }
     }
 }
