@@ -73,12 +73,12 @@ public class Box {
         }
         if (isArrowVisible) {
             g2d.drawImage(leftArrow,x+2,y+35,35,30,null);
-            g2d.drawImage(rightArrow,x+57,y+35,35,30,null);
+            g2d.drawImage(rightArrow,x+60,y+35,35,30,null);
         }
     }
 
     public void mouseEntered(MouseEvent e) {
-        if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && vitri > 0) {
+        if (!isquan && vitri != 12 && vitri != 13  && vitri > 0) {
             Point p = e.getPoint();
             int px = (int) p.getX();
             int py = (int) p.getY();
@@ -91,7 +91,7 @@ public class Box {
     }
 
     public void mousePressed(MouseEvent e) {
-    	  if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && vitri > 0) {
+    	  if (!isquan && vitri != 12 && vitri != 13  && vitri > 0) {
     	    Point p = e.getPoint();
     	    int px = (int) p.getX();
     	    int py = (int) p.getY();
@@ -101,9 +101,8 @@ public class Box {
     	  }
     	}
 
-
     public void mouseExited(MouseEvent e) {
-        if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && giatri > 0) {
+        if (!isquan && vitri != 12 && vitri != 13  && giatri > 0) {
             Point p = e.getPoint();// Lấy tọa độ chuột
             int px = (int) p.getX();// tọa độ x
             int py = (int) p.getY();// tọa độ y
@@ -115,7 +114,7 @@ public class Box {
     }
 
     public void mouseReleased(MouseEvent e) {
-        if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && giatri > 0) {
+        if (!isquan && vitri != 12 && vitri != 13  && giatri > 0) {
             Point p = e.getPoint();
             int px = (int) p.getX();
             int py = (int) p.getY();
@@ -129,10 +128,11 @@ public class Box {
     }
 
     public void mouseDragged(MouseEvent e) {
+
     }
 
     public void mouseMoved(MouseEvent e) {
-        if (!isquan && vitri != 12 && vitri != 13 && vitri > 6 && giatri > 0) {
+        if (!isquan && vitri != 12 && vitri != 13  && giatri > 0) {
             mouseEntered(e);
             mouseExited(e);
         }

@@ -2,6 +2,7 @@ package useinterface;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -39,6 +40,73 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     public void mousePressed(MouseEvent e) {
         // Xử lý sự kiện khi chuột được nhấn xuống
         table.mousePressed(e);
+        Point p = e.getPoint();
+        int px = (int) e.getX();
+        int py = (int) e.getY();
+
+        //CLIKC HÀNG TRÊN
+        if((px > 192 && px < 227) && (py < 305 && py > 275)  ){
+            System.out.println("left");
+        }
+        if((px > 247 && px < 282) && (py < 305 && py > 275)  ){
+            System.out.println("right");
+        }
+        if((px > 284 && px < 323) && (py < 305 && py > 275)  ){
+            System.out.println("left-2");
+        }
+        if((px > 346 && px < 379) && (py < 305 && py > 275)  ){
+            System.out.println("right-2");
+        }
+        if((px > 383 && px < 418) && (py < 305 && py > 275)  ){
+            System.out.println("left-3");
+        }
+        if((px > 441 && px < 476) && (py < 305 && py > 275)  ){
+            System.out.println("right-3");
+        }
+        if((px > 483 && px < 518) && (py < 305 && py > 275)  ){
+            System.out.println("left-4");
+        }
+        if((px > 541 && px < 576) && (py < 305 && py > 275)  ){
+            System.out.println("right-4");
+        }
+        if((px > 582 && px < 617) && (py < 305 && py > 275)  ){
+            System.out.println("left-5");
+        }
+        if((px > 640 && px < 675) && (py < 305 && py > 275)  ){
+            System.out.println("right-5");
+        }
+        
+        // CLICK HÀNG DƯỚI
+        if((px > 192 && px < 227) && (py < 395 && py > 365)  ){
+            System.out.println("left");
+        }
+        if((px > 247 && px < 282) && (py < 395 && py > 365)  ){
+            System.out.println("right");
+        }
+        if((px > 284 && px < 323) && (py < 395 && py > 365)  ){
+            System.out.println("left-2");
+        }
+        if((px > 346 && px < 379) && (py < 395 && py > 365)  ){
+            System.out.println("right-2");
+        }
+        if((px > 383 && px < 418) && (py < 395 && py > 365)  ){
+            System.out.println("left-3");
+        }
+        if((px > 441 && px < 476) && (py < 395 && py > 365)  ){
+            System.out.println("right-3");
+        }
+        if((px > 483 && px < 518) && (py < 395 && py > 365)  ){
+            System.out.println("left-4");
+        }
+        if((px > 541 && px < 576) && (py < 395 && py > 365)  ){
+            System.out.println("right-4");
+        }
+        if((px > 582 && px < 617) && (py < 395 && py > 365)  ){
+            System.out.println("left-5");
+        }
+        if((px > 640 && px < 675) && (py < 395 && py > 365)  ){
+            System.out.println("right-5");
+        }
         repaint();
     }
 

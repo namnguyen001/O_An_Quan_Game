@@ -15,7 +15,6 @@ public class Table extends JFrame {
 	private Square[] squares;
 
 	public Table(Square[] squares) {
-
 		this.squares = squares;
 		createBanco();
 	}
