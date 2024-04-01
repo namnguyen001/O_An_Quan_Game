@@ -28,26 +28,21 @@ public class MainGame extends JFrame {
         add(start);
         
         gamePanel = new GamePanel();
-//        this.add(gamePanel);
-        
-//        menuControl = new MenuController(this);
-//        this.setJMenuBar(menuControl.getMenu());
+
        
         this.setVisible(true);
     }
 
     public void createnewgame() {
-        getContentPane().remove(start); // Remove the StartGame panel
-        getContentPane().repaint(); // Repaint the frame
-        
-        gamePanel = new GamePanel(); // Create a new GamePanel
-        getContentPane().add(gamePanel); // Add the GamePanel to the frame
-        
-        // Revalidate the frame to reflect the changes
-        getContentPane().revalidate();
+        getContentPane().remove(start);
         getContentPane().repaint();
         
-        // Update the MenuController
+        gamePanel = new GamePanel(); 
+        getContentPane().add(gamePanel); 
+     
+        getContentPane().revalidate();
+        getContentPane().repaint();
+  
         menuControl = new MenuController(this);
         this.setJMenuBar(menuControl.getMenu());
     }
