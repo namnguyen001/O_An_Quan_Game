@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         int px = (int) e.getX();
         int py = (int) e.getY();
 
-        //CLIKC HÀNG TRÊN
+        //CLICK HÀNG TRÊN
         if((px > 192 && px < 227) && (py < 305 && py > 275)  ){
             System.out.println("left");
         }
@@ -121,6 +121,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     public void mouseEntered(MouseEvent e) {
         // Xử lý sự kiện khi chuột đi vào
         table.mouseEntered(e);
+        moveStone(e);
         repaint();
     }
 
@@ -141,5 +142,31 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         // Xử lý sự kiện khi chuột được di chuyển (không nhấn)
         table.mouseMoved(e);
         repaint();
-    }   
+    }  
+    
+    private void moveStone(MouseEvent e) {
+        int px = (int) e.getX();
+        int py = (int) e.getY();
+
+        // Xác định vị trí của ô và hướng di chuyển
+        int position = -1; // Giả sử không có ô nào được chọn
+        int direction = 0; // Khởi tạo hướng di chuyển
+        boolean isEaten = false; // Khởi tạo cờ cho biết ô có bị ăn không
+        int left = 1, right = 2;
+
+        // Xác định vị trí và hướng di chuyển dựa trên tọa độ của chuột
+        if ((px > 192 && px < 227) && (py < 305 && py > 275)) {
+            position = 1;
+            direction = 1;
+            process.move(position, direction, isEaten);
+        } else if ((px > 247 && px < 282) && (py < 305 && py > 275)) {
+            position = 2;
+            direction = 2;
+            process.move(position, direction, isEaten);
+//        } else if  {
+//            // Xử lý các trường hợp khác nếu cần
+        }
+
+    }
+
 }

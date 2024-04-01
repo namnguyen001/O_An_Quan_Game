@@ -33,7 +33,7 @@ public class MenuController implements ActionListener {
         menu.add(Thoat);
         help.add(Luat);
         help.add(Them);
-        Font fontMenu=new Font("SansSerif",Font.BOLD,18);
+        Font fontMenu=new Font("SansSerif",Font.BOLD,15);
         menu.setFont(fontMenu);
         help.setFont(fontMenu);
     }
@@ -55,6 +55,9 @@ public class MenuController implements ActionListener {
         }
         if (e.getSource() == Luat) {
             mainGame.showRule();
+        }
+        if (e.getSource() == GameMoi) {
+        	mainGame.newGame();
         }
     }
 }

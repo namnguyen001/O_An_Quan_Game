@@ -12,9 +12,11 @@ public class Square {
     private int vitri;
 	private int giatri;
     private boolean isquan;
+    public boolean[] isQuan = new boolean[70];
     private JButton boxBtn;
 	private boolean isArrowVisible;
 	private static MainGame mainGame;
+	private Box[] boxs = new Box[14];
     
     
     public Square(int vitri, int giatri, boolean isquan) {
@@ -49,4 +51,12 @@ public class Square {
 		return isArrowVisible = true;
 		
 	}
+	
+	public void change(int n){
+		giatri=n;
+	}
+	public void resetStone() {
+		for(int i=0;i<70;i++) isQuan[i]=false;
+	}
+	
 }
