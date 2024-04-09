@@ -9,8 +9,9 @@ import java.awt.event.MouseEvent;
 
 public class Box {
 	private int x,y, width, height;
-    private int vitri, giatri;
-    private boolean isquan;
+    private int vitri;
+	public int giatri;
+    public boolean isquan;
     private Image imagesquare;
     private Image imageleft, imageright, buttonImage, imagebox;
     private Image imagebox1, imagebox2, flag;

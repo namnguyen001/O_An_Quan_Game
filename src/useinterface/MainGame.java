@@ -20,7 +20,7 @@ public class MainGame extends JFrame {
     	this.setTitle("Ô Ăn Quan");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setSize(720, 600);
+        setSize(713, 600);
         setLocationRelativeTo(null);
         setResizable(false);
         

@@ -3,7 +3,7 @@ package controller;
 import javax.swing.*;
 import java.awt.*;
 import gameinterface.*;
-import gameinterface.Square;
+import gameinterface.Box;
 import useinterface.*;
 
 public class Process {
@@ -11,16 +11,21 @@ public class Process {
     private Score[] scBox = new Score[2];
     private MainGame mainGame;
     private Table[] table;
+    Box[] boxs = new Box[14];
 
     public Process() {	
         squares = new Square[14];
+        boxs = new Box[14]; 
         for (int i = 0; i < 12; i++) {
             if (i % 6 != 0) {
                 squares[i] = new Square(i, 5, false);
+                boxs[i] = new Box(0,0,0,0, i, 5, false, false);
             } else if (i == 0) {
                 squares[i] = new Square(i, 10, true);
+                boxs[i] = new Box(0, 0, 0, 0, i, 10, true, false);
             } else {
                 squares[i] = new Square(i, 10, true);
+                boxs[i] = new Box(0, 0, 0, 0, i, 10, true, false);
             }
         }
         squares[12] = new Square(12, 0, false);
@@ -35,37 +40,43 @@ public class Process {
         this.squares = squares;
     }
     
-    public void move(int vitri, int direction, boolean isEaten){
-        if (vitri == 0 || vitri == 6) {
-            mainGame.nextTurn();
-        } else if (squares[vitri].getGiatri() > 0) {
-            if (!isEaten) {
-                int num = squares[vitri].getGiatri();
-                for (int i = 1; i <= num; i++) {
-                    int temp = calNewPos(vitri, i * direction);
-                    squares[vitri].change(squares[vitri].getGiatri() - 1);
-                    squares[temp].change(squares[temp].getGiatri() + 1);
-                    int j = 0;
-                    while (squares[temp].isQuan[j] == false)
-                        j++;
-                    squares[vitri].isQuan[j] = false;
-                    squares[temp].isQuan[j]= true;
-                    table[0].move(temp);
+    public void move(int team, int pos) {
+        int step = squares[pos].getGiatri();
+        squares[pos].change(0);
+        for (int i = 1; i <= step; i++) {
+            int newPos = calNewPos(pos, i);
+            if (i == step) {
+                // Check for capturing conditions
+                if (squares[newPos].getGiatri() == 0 && squares[11 - newPos].getGiatri() > 0) {
+                    xoaO(11 - newPos);
+                    kill(team, newPos);
+                } else if (squares[newPos].isQuan()) {
+                    xoaQuan(team, newPos);
                 }
-                int vtSau = calNewPos(vitri, (num + 1) * direction);
-                move(vtSau, direction, false);
-            } else {
-                mainGame.nextTurn();
             }
-        } else {
-            if (squares[calNewPos(vitri, direction)].getGiatri() > 0) {
-                kill(mainGame.getCurTeam(), calNewPos(vitri, direction));
-                move(calNewPos(vitri, direction * 2), direction, true);
-            } else {
-                mainGame.nextTurn();
-            }
+            squares[newPos].change(squares[newPos].getGiatri() + 1);
         }
     }
+
+    
+    void xoaO(int vitri) {
+        // Xóa tất cả các đá trong ô có chỉ số vị trí (vitri)
+        squares[vitri].change(0);
+    }
+
+    void xoaQuan(int team, int vitri) {
+        // Xóa quân trong ô có chỉ số vị trí (vitri) và cộng vào ô score tương ứng
+        if (team == 0) {
+            // Nếu là đội 0, thì cộng vào ô score của đội 0
+            squares[5].change(squares[5].getGiatri() + squares[vitri].getGiatri());
+        } else {
+            // Ngược lại, cộng vào ô score của đội 1
+            squares[11].change(squares[11].getGiatri() + squares[vitri].getGiatri());
+        }
+        // Xóa quân trong ô
+        squares[vitri].change(0);
+    }
+
     
     public int check(int team) {
         // Check if there is a win situation or out of stones in current team.
@@ -95,19 +106,22 @@ public class Process {
     }
     
     void kill(int team, int vitri) {
-        int temp = scBox[team].getGiatri();
         int boxTemp = squares[vitri].getGiatri();
         for (int i = 0; i < boxTemp; i++) {
             int j = 0;
-            while (squares[vitri].isQuan() == false)
+            while (!squares[vitri].isQuan[j]) {
                 j++;
-            squares[vitri].setQuan(false);
+            }
+            squares[vitri].isQuan[j] = false;
             scBox[team].isquan[j] = true;
             squares[vitri].change(squares[vitri].getGiatri() - 1);
+            // Giảm số lượng đá trong ô của bảng
             table[0].move(team - 2);
-            scBox[team].change(1 + scBox[team].getGiatri());
+            // Tăng số lượng đá trong ô điểm của đội
+            scBox[team].change(scBox[team].getGiatri() + 1);
         }
     }
+
     
     public void nextTurn() {
 		int result=check(mainGame.getCurTeam());
