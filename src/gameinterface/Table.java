@@ -10,12 +10,16 @@ import java.awt.event.MouseEvent;
 public class Table extends JFrame {
 
     public static int WIDTH = 100, HEIGHT = 100, HEIGHT_QUAN = 200, X = 50, Y = 50;
-    public static final int[] coordinatesX = { 20, 60, 40, 20, 60, 50, 80, 60, 70, 60 };
-    public static final int[] coordinatesY = { 20, 20, 50, 80, 80, 120, 30, 60, 65, -5 };
-
+    // public static final int[] coordinatesX = { 20, 60, 40, 20, 60, 50, 80, 60, 70, 60,20, 60, 40, 20, 60, 50, 80, 60, 70, 60,
+    //     20, 60, 40, 20, 60, 50, 80, 60, 70, 60,20, 60, 40, 20, 60, 50, 80, 60, 70, 60,20, 60, 40, 20, 60, 50, 80, 60, 70, 60,
+    //     20, 60, 40, 20, 60, 50, 80, 60, 70, 60,20, 60, 40, 20, 60, 50, 80, 60, 70, 60, 70, 60 };
+    // public static final int[] coordinatesY = { 20, 20, 50, 80, 80, 120, 30, 60, 65, 55,20, 20, 50, 80, 80, 120, 30, 60, 65, 55,
+    //     20, 20, 50, 80, 80, 120, 30, 60, 65, 55,20, 20, 50, 80, 80, 120, 30, 60, 65, 55,20, 20, 50, 80, 80, 120, 30, 60, 65, 55,
+    //     20, 20, 50, 80, 80, 120, 30, 60, 65, 55,20, 20, 50, 80, 80, 120, 30, 60, 65, 55,65, 55 };
+        private int[] coordinatesX = new int[70];
+        private int[] coordinatesY = new int[70];
     private Box[] boxs = new Box[14];
     private Square[] squares;
-    private MainGame mg;
 
     public Table(Square[] squares) {
         this.squares = squares;
@@ -48,23 +52,7 @@ public class Table extends JFrame {
                 squares[13].getGiatri(), squares[13].isQuan(),false);
     }
     
-    public void move(int vitri) {
-        int newX = boxs[vitri].getX(); 
-        int newY = boxs[vitri].getY(); 
-        int speed = 5 ;
-        int time = (vitri >= 0) ? 5  : 10 ;
-        for (int i = 0; i <= time; i++) {
-            try {
-                setLocation(X + (int)((newX - X) * i / time), Y + (int)((newY - Y) * i / time));
-                Thread.sleep(1);
-                mg.repaint();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        X = newX;
-        Y = newY;
-    }
+
     
     public void draw(Graphics2D g2d) {
         for (int i = 0; i < boxs.length; i++) {

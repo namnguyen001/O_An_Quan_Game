@@ -53,14 +53,6 @@ public class MainGame extends JFrame {
         this.jlabel.setText(s);
     }
 
-    public void nextTurn() {
-        currentTeam = 1 - currentTeam;
-        process.nextTurn();
-    }
-
-    public int getCurTeam() {
-        return currentTeam;
-    }
 
     void showMore() {
         String s = "Trò chơi mô phỏng ô ăn quan.\nTác giả: NG\nChúc các bạn vui vẻ.";
@@ -82,19 +74,13 @@ public class MainGame extends JFrame {
         JOptionPane.showMessageDialog(this, content, "Rule", JOptionPane.PLAIN_MESSAGE);
     }
 
-    public void newGame() {
-        int option = JOptionPane.showConfirmDialog(this, "Bạn có muốn chơi lại không?", "Retard alert",
-                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        if (option == JOptionPane.YES_OPTION) {
-            process.reDraw();
-        }
-    }
+    // public void newGame() {
+    //     int option = JOptionPane.showConfirmDialog(this, "Bạn có muốn chơi lại không?", "Retard alert",
+    //             JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+    //     if (option == JOptionPane.YES_OPTION) {
+    //         process.reDraw();
+    //     }
+    // }
 
-    public int getNumberInBox() {
-        return numberInBox;
-    }
-
-    public int getNumberInScoreBox() {
-        return numberInScoreBox;
-    }
+   
 }

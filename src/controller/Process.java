@@ -2,15 +2,15 @@ package controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+
 import gameinterface.*;
 import gameinterface.Box;
 import useinterface.*;
 
 public class Process {
     private Square[] squares;
-    private Score[] scBox = new Score[2];
-    private MainGame mainGame;
-    private Table[] table;
+    private ArrayList<Score> scores;
     Box[] boxs = new Box[14];
 
     public Process() {	
@@ -19,13 +19,10 @@ public class Process {
         for (int i = 0; i < 12; i++) {
             if (i % 6 != 0) {
                 squares[i] = new Square(i, 5, false);
-                boxs[i] = new Box(0,0,0,0, i, 5, false, false);
             } else if (i == 0) {
                 squares[i] = new Square(i, 10, true);
-                boxs[i] = new Box(0, 0, 0, 0, i, 10, true, false);
             } else {
                 squares[i] = new Square(i, 10, true);
-                boxs[i] = new Box(0, 0, 0, 0, i, 10, true, false);
             }
         }
         squares[12] = new Square(12, 0, false);
@@ -40,127 +37,182 @@ public class Process {
         this.squares = squares;
     }
     
-    public void move(int team, int pos) {
-        int step = squares[pos].getGiatri();
-        squares[pos].change(0);
-        for (int i = 1; i <= step; i++) {
-            int newPos = calNewPos(pos, i);
-            if (i == step) {
-                // Check for capturing conditions
-                if (squares[newPos].getGiatri() == 0 && squares[11 - newPos].getGiatri() > 0) {
-                    xoaO(11 - newPos);
-                    kill(team, newPos);
-                } else if (squares[newPos].isQuan()) {
-                    xoaQuan(team, newPos);
-                }
-            }
-            squares[newPos].change(squares[newPos].getGiatri() + 1);
-        }
-    }
-
-    
-    void xoaO(int vitri) {
-        // Xóa tất cả các đá trong ô có chỉ số vị trí (vitri)
-        squares[vitri].change(0);
-    }
-
-    void xoaQuan(int team, int vitri) {
-        // Xóa quân trong ô có chỉ số vị trí (vitri) và cộng vào ô score tương ứng
-        if (team == 0) {
-            // Nếu là đội 0, thì cộng vào ô score của đội 0
-            squares[5].change(squares[5].getGiatri() + squares[vitri].getGiatri());
-        } else {
-            // Ngược lại, cộng vào ô score của đội 1
-            squares[11].change(squares[11].getGiatri() + squares[vitri].getGiatri());
-        }
-        // Xóa quân trong ô
-        squares[vitri].change(0);
-    }
-
-    
-    public int check(int team) {
-        // Check if there is a win situation or out of stones in current team.
-        if (squares[5].getGiatri() == 0 && squares[11].getGiatri() == 0) {
-            return -1;
-        }
-        if (scBox[team].getGiatri() < 5 && total(team) == 0) {
-            return 0;
-        }
-        if (scBox[team].getGiatri() > 5 && total(team) == 0) {
-            return 1;
-        }
-        return 2;
-    }
-    
-    int total(int team) {
-        // Get the total of stones on normal box.
-        if (team == 0) {
-            return squares[6].getGiatri() + squares[7].getGiatri() + squares[8].getGiatri() + squares[9].getGiatri() + squares[10].getGiatri();
-        } else {
-            return squares[0].getGiatri() + squares[1].getGiatri() + squares[2].getGiatri() + squares[3].getGiatri() + squares[4].getGiatri();
-        }
-    }
-    
-    int calNewPos(int src, int step) {
-        return (src + 1200 + step) % 12;
-    }
-    
-    void kill(int team, int vitri) {
-        int boxTemp = squares[vitri].getGiatri();
-        for (int i = 0; i < boxTemp; i++) {
-            int j = 0;
-            while (!squares[vitri].isQuan[j]) {
-                j++;
-            }
-            squares[vitri].isQuan[j] = false;
-            scBox[team].isquan[j] = true;
-            squares[vitri].change(squares[vitri].getGiatri() - 1);
-            // Giảm số lượng đá trong ô của bảng
-            table[0].move(team - 2);
-            // Tăng số lượng đá trong ô điểm của đội
-            scBox[team].change(scBox[team].getGiatri() + 1);
-        }
-    }
-
-    
-    public void nextTurn() {
-		int result=check(mainGame.getCurTeam());
-		if(result==-1) {
-			int winTeam;
-			if(scBox[0].getGiatri()>scBox[1].getGiatri()) winTeam=0;
-			else if(scBox[0].getGiatri()<scBox[1].getGiatri()) winTeam=1;
-			else winTeam=-1;
-			//victory(winTeam);
-		}
-//		if(result==0) victory(1-mainGame.getCurTeam());
-//		if(result==1) spread(mainGame.getCurTeam());
-//		scBox[mainGame.getCurTeam()].setTurn(true);
-//		scBox[1-mainGame.getCurTeam()].setTurn(false);
+	public ArrayList<Score> getScores(){
+		return scores;
 	}
-    public void reDraw() {  
-		//reset game.
-		//mainGame.currentTeam=0;
-		int count=0;
-		for(int i=0;i<12;i++) {
-			if(i!=0&&i!=6)
-				for(int j=1;j<=5;j++) {
-					table[count].quickMove(i);
-					count++;
-				}
-			else
-				for(int j=7;j<=11;j++) {
-					table[count].quickMove(i);
-					count++;
-				}
-			squares[i].resetStone();
+
+	public void setScores( ArrayList<Score> scores){
+		this.scores = scores;
+	}
+
+	public Square[] copysSquares(Square[] squares) {
+		Square[] s = new Square[squares.length];
+		for (int i = 0; i < s.length; i++) {
+			s[i] = new Square(i, squares[i].getGiatri(), squares[i].isQuan());
 		}
-		scBox[0].resetStone();
-		scBox[1].resetStone();
-		for(int i=0;i<12;i++) squares[i].change(mainGame.getNumberInBox());
-		squares[5].change(mainGame.getNumberInScoreBox());
-		squares[11].change(mainGame.getNumberInScoreBox());
-		scBox[0].change(0);
-		scBox[1].change(0);
-		scBox[0].setTurn(true);
+		return s;
+	}
+	
+	public int right(int viTri) {
+		int giaTri = squares[viTri].getGiatri();
+		squares[viTri].setGiatri(0);
+		while (giaTri != 0) {
+			viTri++;
+			if (viTri == 12) {
+				viTri = 0;
+			}
+			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
+			giaTri--;
+			System.out.println("Vitri: " + viTri);
+			Score score = new Score(copysSquares(squares));
+			scores.add(score);
+		}
+		viTri++;
+		if (viTri == 12) {
+			viTri = 0;
+		}
+		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
+			return right(viTri);
+		} else {
+			return viTri--;
+		}
+	}
+
+
+	// trả về vị trí sau khi đi qua phải
+	public int left(int viTri) {
+		int giaTri = squares[viTri].getGiatri();
+		squares[viTri].setGiatri(0);
+		while (giaTri != 0) {
+			viTri--;
+			if (viTri == -1) {
+				viTri = 11;
+			}
+			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
+			giaTri--;
+			System.out.println("Vi tri: " + viTri);
+			Score score = new Score(copysSquares(squares));
+			scores.add(score);
+		}
+		viTri--;
+		if (viTri == -1) {
+			viTri = 11;
+		}
+		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
+			return right(viTri);
+		} else {
+			return viTri--;
+		}
+	}
+
+    public int left2(int viTri) {
+		int giaTri = squares[viTri].getGiatri();
+		squares[viTri].setGiatri(0);
+		while (giaTri != 0) {
+			viTri++;
+			if (viTri == 12) {
+				viTri = 0;
+			}
+			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
+			giaTri--;
+			System.out.println("Vitri: " + viTri);
+			Score score = new Score(copysSquares(squares));
+			scores.add(score);
+		}
+		viTri++;
+		if (viTri == 12) {
+			viTri = 0;
+		}
+		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
+			return left2(viTri);
+		} else {
+			return viTri--;
+		}
+	}
+
+
+	// trả về vị trí sau khi đi qua phải
+	public int right2(int viTri) {
+		int giaTri = squares[viTri].getGiatri();
+		squares[viTri].setGiatri(0);
+		while (giaTri != 0) {
+			viTri--;
+			if (viTri == -1) {
+				viTri = 11;
+			}
+			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
+			giaTri--;
+			System.out.println("Vi tri: " + viTri);
+			System.out.println("sang phai");
+			Score score = new Score(copysSquares(squares));
+			scores.add(score);
+		}
+		viTri--;
+		if (viTri == -1) {
+			viTri = 11;
+		}
+		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
+			return right2(viTri);
+		} else {
+			return viTri--;
+		}
+	}
+    
+    public boolean finish() {
+		if (squares[0].getGiatri() == 0 && squares[6].getGiatri() == 0){
+			return true;
+		}
+		if (squares[12].getGiatri() == 0) {
+			if (kiemTraHetQuan(1)) {
+				return true;
+
+			}
+		}
+		if (squares[13].getGiatri() == 0) {
+			if (kiemTraHetQuan(2)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+    public boolean kiemTra(int viTri, int player) {
+		if (player == 1) {
+			if (viTri != 7 && viTri != 8 && viTri != 9 && viTri != 10 && viTri != 11) {
+				return false;
+			}
+			if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
+				return false;
+			}
+		} else if(player == 2) {
+			if (viTri != 1 && viTri != 2 && viTri != 3 && viTri != 4 && viTri != 5) {
+				return false;
+			}
+			if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+    public boolean kiemTraHetQuan(int player) {
+		if (player == 1) {
+			int score = 0;
+			for (int i = 1; i < 6; i++) {
+				score += squares[i].getGiatri();
+			}
+			if (score == 0) {
+				return true;
+			}
+		} else {
+			int score = 0;
+			for (int i = 7; i < 12; i++) {
+				score += squares[i].getGiatri();
+			}
+			if (score == 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

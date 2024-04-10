@@ -48,13 +48,17 @@ public class Box {
     }
 
     public void draw(Graphics2D g2d) {
+        g2d.setFont(new Font("NewellsHand", Font.PLAIN,20));
         if (!isquan && vitri != 12 && vitri != 13) {
             g2d.drawImage(imagesquare, x, y, width, height, null);
+            g2d.drawString(giatri + "", x + 40, y + 25);
         } else if (isquan) {
             if (vitri == 0) {
                 g2d.drawImage(imageleft, x, y, width, height, null);
+                g2d.drawString(giatri + "", x + 40, y + 70);
             } else {
                 g2d.drawImage(imageright, x, y, width, height, null);
+                g2d.drawString(giatri + "", x + 40, y + 70);
             }
         } else if (vitri == 12) {
             g2d.drawImage(imagebox1, x, y, width, height, null);
@@ -62,16 +66,16 @@ public class Box {
         else {
             g2d.drawImage(imagebox2, x, y, width, height, null);
         }
-        g2d.setColor(Color.decode("#48423d"));
-        if (isquan) {
-            for (int i = 0; i < giatri; i++) {
-                g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i] + 40, 13, 10);
-            }
-        } else {
-            for (int i = 0; i < giatri; i++) {
-                g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i], 13, 10);
-            }
-        }
+        // g2d.setColor(Color.decode("#48423d"));
+        // if (isquan) {
+        //     for (int i = 0; i < giatri; i++) {
+        //         g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i] + 40, 13, 10);
+        //     }
+        // } else {
+        //     for (int i = 0; i < giatri; i++) {
+        //         g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i], 13, 10);
+        //     }
+        // }
         if (isArrowVisible) {
             g2d.drawImage(leftArrow,x+2,y+35,35,30,null);
             g2d.drawImage(rightArrow,x+60,y+35,35,30,null);
@@ -92,7 +96,7 @@ public class Box {
     }
 
     public void mousePressed(MouseEvent e) {
-    	  if (!isquan && vitri != 12 && vitri != 13  && vitri > 0) {
+    	  if (!isquan && vitri != 12 && vitri != 13  && vitri > 0 ) {
     	    Point p = e.getPoint();
     	    int px = (int) p.getX();
     	    int py = (int) p.getY();
