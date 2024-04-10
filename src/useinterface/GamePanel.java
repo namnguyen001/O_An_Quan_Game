@@ -79,8 +79,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
                             e.printStackTrace();
                         }
                     }
-                    player = 2;
                 }
+                player = 2;
             }
         }
     }

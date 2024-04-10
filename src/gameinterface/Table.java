@@ -99,13 +99,5 @@ public class Table extends JFrame {
         repaint();
     }
     
-    public void quickMove(int vitri) {
-		int 
-			newX=boxs[vitri].getX(),
-			newY=boxs[vitri].getY();
-		setLocation(newX,newY);
-		X=newX;
-		Y=newY;
-	}
 
 }
