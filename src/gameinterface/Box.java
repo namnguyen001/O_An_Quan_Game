@@ -48,17 +48,17 @@ public class Box {
     }
 
     public void draw(Graphics2D g2d) {
-        g2d.setFont(new Font("NewellsHand", Font.PLAIN,20));
+        g2d.setFont(new Font("NewellsHand", Font.PLAIN,30));
         if (!isquan && vitri != 12 && vitri != 13) {
             g2d.drawImage(imagesquare, x, y, width, height, null);
-            g2d.drawString(giatri + "", x + 40, y + 25);
+            g2d.drawString(giatri + "", x + 40, y + 60);
         } else if (isquan) {
             if (vitri == 0) {
                 g2d.drawImage(imageleft, x, y, width, height, null);
-                g2d.drawString(giatri + "", x + 40, y + 70);
+                g2d.drawString(giatri + "", x + 35, y + 110);
             } else {
                 g2d.drawImage(imageright, x, y, width, height, null);
-                g2d.drawString(giatri + "", x + 40, y + 70);
+                g2d.drawString(giatri + "", x + 30, y + 110);
             }
         } else if (vitri == 12) {
             g2d.drawImage(imagebox1, x, y, width, height, null);
@@ -82,6 +82,7 @@ public class Box {
         }
     }
 
+    
     public void mouseEntered(MouseEvent e) {
         if (!isquan && vitri != 12 && vitri != 13  && vitri > 0) {
             Point p = e.getPoint();
@@ -150,5 +151,9 @@ public class Box {
     public int getY() {
     	return y;
     }
+
+	public int getGiatri() {
+		return giatri;
+	}
     
 }

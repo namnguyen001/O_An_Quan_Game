@@ -7,6 +7,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import controller.Process;
 import gameinterface.*;
@@ -41,14 +42,17 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void run() {
         while (!process.finish()) {
-            process.setScores(new ArrayList<>());// reset lại kết quả trên bàn cờ cho việc tính toán mới
-            if (player == 2) {
-                if (click) {
+            process.setScores(new ArrayList<>()); 
+            int killPosition;
+
+            if (click) {
+                if (process.kiemTra(location, player)) {
                     if (action == 1) {
-                        process.left2(location);
+                        killPosition = process.move(location, -1);
                     } else {
-                        process.right2(location);
+                        killPosition = process.move(location, 1); 
                     }
+                    process.kill(player, killPosition);
                     while (index < process.getScores().size()) {
                         table = new Table(process.getScores().get(index).getSquares());
                         repaint();
@@ -59,31 +63,26 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
                             e.printStackTrace();
                         }
                     }
-                    player = 1;
-                }
-                repaint();
-            } else {
-                if (click) {
-                    if (action == 1) {
-                        process.left(location);
-                    } else {
-                        process.right(location);
+
+                    if (process.finish()) {
+                        JOptionPane.showMessageDialog(null, "Player " + player + " has no more moves!");
                     }
-                    while (index < process.getScores().size()) {
-                        table = new Table(process.getScores().get(index).getSquares());
-                        repaint();
-                        index++;
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    player = (player == 1) ? 2 : 1; 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid move for player " + player);
+                    click = false;
                 }
-                player = 2;
+            }
+            repaint();
+            try {
+                Thread.sleep(100); // Thêm một khoảng thời gian nghỉ ngơi giữa các lần lặp
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+        JOptionPane.showMessageDialog(null, "Game Over!");
     }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -123,7 +122,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         if ((px > 255 && px < 293) && (py < 215 && py > 185)) {
             System.out.println("right-2");
             player = 1;
-            location = 1;
+            location = 2;
             action = 2;
             click = true;
         }
@@ -137,7 +136,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         if ((px > 355 && px < 391) && (py < 215 && py > 185)) {
             System.out.println("right-3");
             player = 1;
-            location = 1;
+            location = 3;
             action = 2;
             click = true;
         }
@@ -151,7 +150,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         if ((px > 452 && px < 488) && (py < 215 && py > 185)) {
             System.out.println("right-4");
             player = 1;
-            location = 1;
+            location = 4;
             action = 2;
             click = true;
         }
@@ -165,7 +164,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         if ((px > 551 && px < 587) && (py < 215 && py > 185)) {
             System.out.println("right-5");
             player = 1;
-            location = 1;
+            location = 5;
             action = 2;
             click = true;
         }
@@ -174,28 +173,28 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         if ((px > 102 && px < 137) && (py < 305 && py > 275)) {
             System.out.println("left");
             player = 2;
-            location = 11;
+            location = 7;
             action = 1;
             click = true;
         }
         if ((px > 160 && px < 195) && (py < 305 && py > 275)) {
             System.out.println("right");
             player = 2;
-            location = 11;
+            location = 7;
             action = 2;
             click = true;
         }
         if ((px > 196 && px < 232) && (py < 305 && py > 275)) {
             System.out.println("left-2");
             player = 2;
-            location = 10;
+            location = 8;
             action = 1;
             click = true;
         }
         if ((px > 255 && px < 293) && (py < 305 && py > 275)) {
             System.out.println("right-2");
             player = 2;
-            location = 10;
+            location = 8;
             action = 2;
             click = true;
         }
@@ -216,28 +215,28 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         if ((px > 393 && px < 429) && (py < 305 && py > 275)) {
             System.out.println("left-4");
             player = 2;
-            location = 8;
+            location = 10;
             action = 1;
             click = true;
         }
         if ((px > 452 && px < 488) && (py < 305 && py > 275)) {
             System.out.println("right-4");
             player = 2;
-            location = 8;
+            location = 10;
             action = 2;
             click = true;
         }
         if ((px > 491 && px < 527) && (py < 305 && py > 275)) {
             System.out.println("left-5");
             player = 2;
-            location = 7;
+            location = 11;
             action = 1;
             click = true;
         }
         if ((px > 551 && px < 587) && (py < 305 && py > 275)) {
             System.out.println("right-5");
             player = 2;
-            location = 7;
+            location = 11;
             action = 2;
             click = true;
         }

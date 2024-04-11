@@ -12,11 +12,16 @@ public class Square {
     private int vitri;
 	public int giatri;
     public boolean isquan;
+    public boolean[] isQuan;
     
     public Square(int vitri, int giatri, boolean isquan) {
 		this.vitri = vitri;
 		this.giatri = giatri;
 		this.isquan = isquan;
+		this.isQuan = new boolean[giatri]; 
+        for (int i = 0; i < giatri; i++) {
+            this.isQuan[i] = true; 
+        }
 	}
 	public int getGiatri() {
 		return giatri;

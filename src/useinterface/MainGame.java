@@ -61,12 +61,11 @@ public class MainGame extends JFrame {
 
     void showRule() {
         JLabel content = new JLabel("<html>" + "<h1>How to play</h1>" + "<p>"
-                + "Đưa chuột lên một trong năm ô thuộc về bên của bạn.<br>"
-                + "Ô đó sẽ chuyển màu xanh dương nếu là nước đi hợp lệ.<br>"
-                + "Mũi tên sẽ xuất hiện tùy theo con trỏ chuột ở bên trái hay bên phải ô, thể hiện hướng đi.<br>"
-                + "Nhấp chuột vào ô để thực hiện nước đi.<br>"
-                + "Trò chơi kết thúc khi cả hai ô quan đã được ăn hết.<br>" + "</p>" + "<h1>Hướng dẫn chơi game</h1>" + "<p>"
-                + "Đưa chuột lên một trong năm ô thuộc về bên của bạn.<br>" + "Ô đó sẽ chuyển màu xanh dương.<br>"
+        		+ "Mouse over one of the five cells belonging to your side.<br>"
+                + "An arrow will appear depending on whether the mouse pointer is to the left or right of the cell, showing the direction.<br>"
+                + "Click on the box to make a move.<br>"
+                + "The game ends when both squares have been taken.<br>" + "</p>" + "<h1>Hướng dẫn chơi game</h1>" + "<p>"
+                + "Đưa chuột lên một trong năm ô thuộc về bên của bạn.<br>" 
                 + "Nếu bạn đưa chuột về bên phải ô sẽ hiện lên ▶, nếu đưa chuột về bên trái ô sẽ hiện lên ◀, tương ứng với chiều rải quân.<br>"
                 + "Bạn click chuột để thực hiện nước đi của mình.<br>"
                 + "Trò chơi kết thúc khi hai ô quan đã được ăn hết.<br>" + "</html>");
