@@ -57,7 +57,7 @@ public class MenuController implements ActionListener {
             mainGame.showRule();
         }
         if (e.getSource() == GameMoi) {
-        // 	mainGame.newGame();
+         	mainGame.newGame();
         }
     }
 }

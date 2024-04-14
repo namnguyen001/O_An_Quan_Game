@@ -31,5 +31,8 @@ public class Score {
 	public void change(int n) {
         this.giatri = n;
     }
+	public void setGiatri(int giatri) {
+		this.giatri = giatri;
+	}
 
 }

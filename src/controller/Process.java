@@ -9,12 +9,15 @@ import gameinterface.Box;
 import useinterface.*;
 
 public class Process {
+	private MainGame mainGame;
 	private Square[] squares;
 	private ArrayList<Score> scores;
 	Box[] boxs = new Box[14];
 	private Score[] scBox;
+	private Table table;
 
 	public Process() {
+		scores = new ArrayList<>();
 		squares = new Square[14];
 		boxs = new Box[14];
 		scBox = new Score[2];
@@ -158,14 +161,47 @@ public class Process {
 //			return viTri--;
 //		}
 //	}
-	
+
+//	public int move(int viTri, int direction) {
+//	    while (true) {
+//	        int giaTri = squares[viTri].getGiatri();
+//	        if (giaTri == 0)  break;
+//	        squares[viTri].setGiatri(0);
+//	        while (giaTri != 0) {
+//	            if (direction == 1) viTri++;
+//	            else if (direction == -1) viTri--; 
+//
+//	            if (viTri == 12) viTri = 0;
+//	            else if (viTri == -1) viTri = 11;
+//	            squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
+//	            giaTri--;
+//	            System.out.println("Vitri: " + viTri);
+//	            Score score = new Score(copysSquares(squares));
+//	            scores.add(score);
+//	        }
+//	        viTri += direction;
+//	        if (viTri == 12) viTri = 0;
+//	        else if (viTri == -1) viTri = 11;
+//	        if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
+//	            viTri -= direction;
+//	            if (viTri == 12) viTri = 0;
+//	            else if (viTri == -1) viTri = 11;
+//	            return viTri;
+//	        }
+//	    }
+//	    return viTri;
+//	}
+
 	public int move(int viTri, int direction) {
 	    int giaTri = squares[viTri].getGiatri();
 	    squares[viTri].setGiatri(0);
 	    while (giaTri != 0) {
-	        viTri += direction;
-	        if (viTri == 12) viTri = 0;
-	        else if (viTri == -1) viTri = 11;
+	        viTri +=direction;  
+	        if (viTri == 12) {   
+	            viTri = 0;
+	        } else if (viTri == -1) {
+	            viTri = 11;
+	        }
 	        squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
 	        giaTri--;
 	        System.out.println("Vitri: " + viTri);
@@ -173,17 +209,49 @@ public class Process {
 	        scores.add(score);
 	    }
 	    viTri += direction;
-	    if (viTri == 12) viTri = 0;
-	    else if (viTri == -1) viTri = 11;
-	    if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
-	        move(viTri, direction);
-	    } else {
-	        viTri -= direction;
-	        if (viTri == 12) viTri = 0;
-	        else if (viTri == -1) viTri = 11;
+	    if (viTri == 12) {
+	        viTri = 0;
+	    } else if (viTri == -1) {
+	        viTri = 11;
 	    }
-		return giaTri;
+	    // the following condition checks could cause spinning in the loop
+	    if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
+	        return move(viTri, direction);
+	    } else {
+	        return viTri--;   
+	    }
 	}
+
+	public int kill(int viTri, int direction) {
+	    if (squares[viTri].getGiatri() == 0 && viTri % 6 != 0) {
+	        viTri += direction; 
+	        if (viTri == 12) {
+	            viTri = 0;
+	        } else if (viTri == -1) {
+	            viTri = 11;
+	        }
+	        if (squares[viTri].getGiatri() != 0) {
+	            int diem = squares[viTri].getGiatri();
+	            squares[viTri].setGiatri(0);
+	            
+	            Score score = new Score(copysSquares(squares));
+	            scores.add(score);
+	            viTri += direction;
+	            if (viTri == 12) {
+	                viTri = 0;
+	            } else if (viTri == -1) {
+	                viTri = 11;
+	            }
+	            if (squares[viTri].getGiatri() == 0 && viTri % 6 != 0) {
+	                return diem + kill(viTri, direction);
+	            } else {
+	                return diem;
+	            }
+	        }
+	        return 0;
+	    }
+	    return 0;
+	} 
 
 	public boolean finish() {
 		if (squares[0].getGiatri() == 0 && squares[6].getGiatri() == 0) {
@@ -201,26 +269,6 @@ public class Process {
 			}
 		}
 		return false;
-	}
-
-	public void kill(int player, int viTri) {
-		int team = (player == 1) ? 0 : 1;
-		int boxTemp = squares[viTri].getGiatri();
-		squares[viTri].setGiatri(0); 
-
-		scBox[team].change(boxTemp);
-
-		if (squares[viTri].getGiatri() == 0 && viTri % 6 != 0) {
-			int nextIndex = (viTri == 11) ? 1 : viTri + 1;
-			// Assign the value in the next box to a temporary variable
-			int nextVal = squares[nextIndex].getGiatri();
-
-			// If the next box is not empty
-			if (nextVal > 0) {
-				squares[nextIndex].setGiatri(0); // the box is now empty
-				scBox[team].change(nextVal); // add the value to the score
-			}
-		}
 	}
 
 	public boolean kiemTra(int viTri, int player) {
@@ -261,5 +309,20 @@ public class Process {
 			}
 		}
 		return false;
+	}
+
+	public void setScorePlayer(int diem, int player) {
+		if (player == 2) {
+			int a = squares[12].getGiatri();
+			squares[12].setGiatri(diem + a);
+			Score score = new Score(squares);
+			scores.add(score);
+		}
+		if (player == 1) {
+			int a = squares[13].getGiatri();
+			squares[13].setGiatri(diem + a);
+			Score score = new Score(squares);
+			scores.add(score);
+		}
 	}
 }

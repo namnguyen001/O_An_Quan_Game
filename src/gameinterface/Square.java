@@ -46,6 +46,9 @@ public class Square {
 	public void setViTri(int vitri) {
 		this.vitri = vitri;
 	}
+	public void change(int n) {
+		 this.giatri = n;
+	}
 	
 	
 	

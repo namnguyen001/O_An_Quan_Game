@@ -1,8 +1,12 @@
 package useinterface;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import controller.Process;
+import gameinterface.Table;
 
 public class MainGame extends JFrame {
 
@@ -13,7 +17,7 @@ public class MainGame extends JFrame {
     int numberInBox = 5;
     int numberInScoreBox = 10;
     private StartGame start;
-    private Process process; // 
+    private Process process; 
     private MainGame mainGame;
 
     public MainGame() {
@@ -28,9 +32,11 @@ public class MainGame extends JFrame {
         add(start);
         
         gamePanel = new GamePanel();
-
+        process = new Process();
        
         this.setVisible(true);
+        
+        
     }
 
     public void createnewgame() {
@@ -72,14 +78,14 @@ public class MainGame extends JFrame {
         content.setBorder(new EmptyBorder(1, 1, 1, 1));
         JOptionPane.showMessageDialog(this, content, "Rule", JOptionPane.PLAIN_MESSAGE);
     }
-
-    // public void newGame() {
-    //     int option = JOptionPane.showConfirmDialog(this, "Bạn có muốn chơi lại không?", "Retard alert",
-    //             JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-    //     if (option == JOptionPane.YES_OPTION) {
-    //         process.reDraw();
-    //     }
-    // }
+    
+     public void newGame() {
+         int option = JOptionPane.showConfirmDialog(this, "Bạn có muốn chơi lại không?", "Retard alert",
+                 JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+         if (option == JOptionPane.YES_OPTION) {
+        	 this.gamePanel.reDraw();
+         }
+     }
 
    
 }

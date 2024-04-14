@@ -17,6 +17,7 @@ public class Box {
     private Image imagebox1, imagebox2, flag;
     private boolean isArrowVisible;
     private Image leftArrow, rightArrow;
+	public boolean[] isQuan;
 
     public Box(int x, int y, int width, int height, int vitri, int giatri, boolean isquan,boolean isArrowVisible) {
         this.x = x;
@@ -48,10 +49,10 @@ public class Box {
     }
 
     public void draw(Graphics2D g2d) {
-        g2d.setFont(new Font("NewellsHand", Font.PLAIN,30));
+        g2d.setFont(new Font("NewellsHand", Font.PLAIN,10));
         if (!isquan && vitri != 12 && vitri != 13) {
             g2d.drawImage(imagesquare, x, y, width, height, null);
-            g2d.drawString(giatri + "", x + 40, y + 60);
+            g2d.drawString(giatri + "", x + 5, y + 5);
         } else if (isquan) {
             if (vitri == 0) {
                 g2d.drawImage(imageleft, x, y, width, height, null);
@@ -62,20 +63,24 @@ public class Box {
             }
         } else if (vitri == 12) {
             g2d.drawImage(imagebox1, x, y, width, height, null);
+            g2d.drawString(giatri + "",x+30,y+70);
         }
         else {
             g2d.drawImage(imagebox2, x, y, width, height, null);
+            g2d.drawString(giatri + "",x+30,y+70);
         }
-        // g2d.setColor(Color.decode("#48423d"));
-        // if (isquan) {
-        //     for (int i = 0; i < giatri; i++) {
-        //         g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i] + 40, 13, 10);
-        //     }
-        // } else {
-        //     for (int i = 0; i < giatri; i++) {
-        //         g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i], 13, 10);
-        //     }
-        // }
+         g2d.setColor(Color.decode("#48423d"));
+         if (isquan) {
+              for (int i = 0; i < giatri; i++) {
+                 int idx = i % Table.coordinatesX.length;
+                 g2d.fillOval(x + Table.coordinatesX[idx], y + Table.coordinatesY[idx]+40 , 13, 10);
+             }
+         } else {
+             for (int i = 0; i < giatri; i++) {
+                 int idx = i % Table.coordinatesX.length;
+                 g2d.fillOval(x + Table.coordinatesX[idx], y + Table.coordinatesY[idx] , 13, 10);
+             }
+         }
         if (isArrowVisible) {
             g2d.drawImage(leftArrow,x+2,y+35,35,30,null);
             g2d.drawImage(rightArrow,x+60,y+35,35,30,null);
