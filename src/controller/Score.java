@@ -1,11 +1,6 @@
 package controller;
 
-import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import gameinterface.Square;
-import useinterface.MainGame;
 
 public class Score {
 	private Square[] squares;
@@ -28,9 +23,6 @@ public class Score {
 		return giatri;
 	}
 
-	public void change(int n) {
-        this.giatri = n;
-    }
 	public void setGiatri(int giatri) {
 		this.giatri = giatri;
 	}

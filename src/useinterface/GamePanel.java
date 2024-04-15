@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	private Thread thread;
 	private int player = 1, index = 0, diem =0;
 	private int location, direction;
-	private boolean click;
+	private boolean click,rai;
 	private Image background,playerImage;
 
 	public GamePanel() {
@@ -45,7 +45,37 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     public void run() {
         while (!process.finish()) {
             index = 0;
-            process.setScores(new ArrayList<>()); // Reset the scores on the board for new calculations
+            process.setScores(new ArrayList<>());
+			if (player == 1) {
+				if (process.kiemTraHetQuan(player)) {
+					process.rai(player);
+					rai = true;
+					table = new Table(process.getScores().get(index).getSquares());
+					repaint();
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} finally {
+						rai = false;
+					}
+				}
+			} else {
+				if (process.kiemTraHetQuan(player)) {
+					process.rai(player);
+					rai = true;
+					table = new Table(process.getScores().get(index).getSquares());
+					repaint();
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} finally {
+						rai = false;
+					}
+				}
+			}
+			process.setScores(new ArrayList<>()); // Reset the scores on the process for new calculations
             if (player == 2) {
                 if (click) {
                     diem = 0;
@@ -204,28 +234,28 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		if ((px > 102 && px < 137) && (py < 305 && py > 275)) {
 			System.out.println("left");
 			player = 2;
-			location = 7;
+			location = 11;
 			direction = -1;
 			click = true;
 		}
 		if ((px > 160 && px < 195) && (py < 305 && py > 275)) {
 			System.out.println("right");
 			player = 2;
-			location = 7;
+			location = 11;
 			direction= 1;
 			click = true;
 		}
 		if ((px > 196 && px < 232) && (py < 305 && py > 275)) {
 			System.out.println("left-2");
 			player = 2;
-			location = 8;
+			location = 10;
 			direction = -1;
 			click = true;
 		}
 		if ((px > 255 && px < 293) && (py < 305 && py > 275)) {
 			System.out.println("right-2");
 			player = 2;
-			location = 8;
+			location = 10;
 			direction = 1;
 			click = true;
 		}
@@ -246,28 +276,28 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		if ((px > 393 && px < 429) && (py < 305 && py > 275)) {
 			System.out.println("left-4");
 			player = 2;
-			location = 10;
+			location = 8;
 			direction = -1;
 			click = true;
 		}
 		if ((px > 452 && px < 488) && (py < 305 && py > 275)) {
 			System.out.println("right-4");
 			player = 2;
-			location = 10;
+			location = 8;
 			direction = 1;
 			click = true;
 		}
 		if ((px > 491 && px < 527) && (py < 305 && py > 275)) {
 			System.out.println("left-5");
 			player = 2;
-			location = 11;
+			location = 7;
 			direction = -1;
 			click = true;
 		}
 		if ((px > 551 && px < 587) && (py < 305 && py > 275)) {
 			System.out.println("right-5");
 			player = 2;
-			location = 11;
+			location = 7;
 			direction = 1;
 			click = true;
 		}

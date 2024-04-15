@@ -1,12 +1,9 @@
 package useinterface;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import controller.Process;
-import gameinterface.Table;
+
 
 public class MainGame extends JFrame {
 

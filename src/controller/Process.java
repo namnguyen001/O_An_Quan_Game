@@ -60,138 +60,6 @@ public class Process {
 		return s;
 	}
 
-//	public int right(int viTri) {
-//		int giaTri = squares[viTri].getGiatri();
-//		squares[viTri].setGiatri(0);
-//		while (giaTri != 0) {
-//			viTri++;
-//			if (viTri == 12) {
-//				viTri = 0;
-//			}
-//			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
-//			giaTri--;
-//			System.out.println("Vitri: " + viTri);
-//			Score score = new Score(copysSquares(squares));
-//			scores.add(score);
-//		}
-//		viTri++;
-//		if (viTri == 12) {
-//			viTri = 0;
-//		}
-//		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
-//			return right(viTri);
-//		} else {
-//			return viTri--;
-//		}
-//	}
-//
-//	public int left(int viTri) {
-//		int giaTri = squares[viTri].getGiatri();
-//		squares[viTri].setGiatri(0);
-//		while (giaTri != 0) {
-//			viTri--;
-//			if (viTri == -1) {
-//				viTri = 11;
-//			}
-//			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
-//			giaTri--;
-//			System.out.println("Vi tri: " + viTri);
-//			Score score = new Score(copysSquares(squares));
-//			scores.add(score);
-//		}
-//		viTri--;
-//		if (viTri == -1) {
-//			viTri = 11;
-//		}
-//		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
-//			return right(viTri);
-//		} else {
-//			return viTri--;
-//		}
-//	}
-//
-//	public int left2(int viTri) {
-//		int giaTri = squares[viTri].getGiatri();
-//		squares[viTri].setGiatri(0);
-//		while (giaTri != 0) {
-//			viTri++;
-//			if (viTri == 12) {
-//				viTri = 0;
-//			}
-//			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
-//			giaTri--;
-//			System.out.println("Vitri: " + viTri);
-//			Score score = new Score(copysSquares(squares));
-//			scores.add(score);
-//		}
-//		viTri++;
-//		if (viTri == 12) {
-//			viTri = 0;
-//		}
-//		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
-//			return left2(viTri);
-//		} else {
-//			return viTri--;
-//		}
-//	}
-//
-//	// trả về vị trí sau khi đi qua phải
-//	public int right2(int viTri) {
-//		int giaTri = squares[viTri].getGiatri();
-//		squares[viTri].setGiatri(0);
-//		while (giaTri != 0) {
-//			viTri--;
-//			if (viTri == -1) {
-//				viTri = 11;
-//			}
-//			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
-//			giaTri--;
-//			System.out.println("Vi tri: " + viTri);
-//			System.out.println("sang phai");
-//			Score score = new Score(copysSquares(squares));
-//			scores.add(score);
-//		}
-//		viTri--;
-//		if (viTri == -1) {
-//			viTri = 11;
-//		}
-//		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
-//			return right2(viTri);
-//		} else {
-//			return viTri--;
-//		}
-//	}
-
-//	public int move(int viTri, int direction) {
-//	    while (true) {
-//	        int giaTri = squares[viTri].getGiatri();
-//	        if (giaTri == 0)  break;
-//	        squares[viTri].setGiatri(0);
-//	        while (giaTri != 0) {
-//	            if (direction == 1) viTri++;
-//	            else if (direction == -1) viTri--; 
-//
-//	            if (viTri == 12) viTri = 0;
-//	            else if (viTri == -1) viTri = 11;
-//	            squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
-//	            giaTri--;
-//	            System.out.println("Vitri: " + viTri);
-//	            Score score = new Score(copysSquares(squares));
-//	            scores.add(score);
-//	        }
-//	        viTri += direction;
-//	        if (viTri == 12) viTri = 0;
-//	        else if (viTri == -1) viTri = 11;
-//	        if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
-//	            viTri -= direction;
-//	            if (viTri == 12) viTri = 0;
-//	            else if (viTri == -1) viTri = 11;
-//	            return viTri;
-//	        }
-//	    }
-//	    return viTri;
-//	}
-
 	public int move(int viTri, int direction) {
 	    int giaTri = squares[viTri].getGiatri();
 	    squares[viTri].setGiatri(0);
@@ -233,7 +101,6 @@ public class Process {
 	        if (squares[viTri].getGiatri() != 0) {
 	            int diem = squares[viTri].getGiatri();
 	            squares[viTri].setGiatri(0);
-	            
 	            Score score = new Score(copysSquares(squares));
 	            scores.add(score);
 	            viTri += direction;
@@ -271,24 +138,6 @@ public class Process {
 		return false;
 	}
 
-	public boolean kiemTra(int viTri, int player) {
-		if (player == 1) {
-			if (viTri != 7 && viTri != 8 && viTri != 9 && viTri != 10 && viTri != 11) {
-				return false;
-			}
-			if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
-				return false;
-			}
-		} else if (player == 2) {
-			if (viTri != 1 && viTri != 2 && viTri != 3 && viTri != 4 && viTri != 5) {
-				return false;
-			}
-			if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
-				return false;
-			}
-		}
-		return true;
-	}
 
 	public boolean kiemTraHetQuan(int player) {
 		if (player == 1) {
@@ -323,6 +172,48 @@ public class Process {
 			squares[13].setGiatri(diem + a);
 			Score score = new Score(squares);
 			scores.add(score);
+		}
+	}
+
+	public int rai(int player) {
+		if (player == 1) {
+			int diem = squares[13].getGiatri();
+			if (diem <= 5) {
+				for (int i = 1; i <= diem; i++) {
+					squares[i].setGiatri(1);
+				}
+				squares[12].setGiatri(0);
+				Score score = new Score(copysSquares(squares));
+	            scores.add(score);
+				return diem;
+			} else {
+				for (int i = 1; i < 6; i++) {
+					squares[i].setGiatri(1);
+				}
+				squares[12].setGiatri(diem-5);
+				Score score = new Score(copysSquares(squares));
+	            scores.add(score);
+				return 5;
+			}
+		} else {
+			int diem = squares[13].getGiatri();
+			if (diem <= 5) {
+				for (int i = 7; i < 7 + diem; i++) {
+					squares[i].setGiatri(1);
+				}
+				squares[12].setGiatri(0);
+				Score score = new Score(copysSquares(squares));
+	            scores.add(score);
+				return diem;
+			} else {
+				for (int i = 7; i < 12; i++) {
+					squares[i].setGiatri(1);
+				}
+				squares[13].setGiatri(diem-5);
+				Score score = new Score(copysSquares(squares));
+	            scores.add(score);
+				return 5;
+			}
 		}
 	}
 }
