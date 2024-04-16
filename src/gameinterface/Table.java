@@ -24,7 +24,9 @@ public class Table extends JFrame {
      
     private Box[] boxs = new Box[14];
     private Square[] squares;
-
+    private Table table;
+    private Color currentColor = Color.RED;  
+    
     public Table(Square[] squares) {
         this.squares = squares;
         createBanco();
@@ -33,27 +35,27 @@ public class Table extends JFrame {
     public void createBanco() {
         int boxY = Y; // Initialize boxY with the initial Y coordinate
         for (int i = 1; i < 6; i++) {
-            boxs[i] = new Box(X + i * WIDTH - 50, boxY + 1 * HEIGHT, WIDTH, HEIGHT, squares[i].getViTri(),
-                    squares[i].getGiatri(), squares[i].isQuan(), false);
+			boxs[i] = new Box(X + i * WIDTH - 50, boxY + 1 * HEIGHT, WIDTH, HEIGHT, squares[i].getViTri(),
+                    squares[i].getGiatri(), squares[i].isQuan(), false,currentColor);
         }
         // Adjust the Y-coordinate for the subsequent boxes as needed
         boxY += HEIGHT; // Move to the next row
         for (int i = 7; i <= 11; i++) {
             boxs[i] = new Box(X + (12 - i) * WIDTH - 50, boxY + 1 * HEIGHT, WIDTH, HEIGHT, squares[i].getViTri(),
-                    squares[i].getGiatri(), squares[i].isQuan(),false);
+                    squares[i].getGiatri(), squares[i].isQuan(),false,currentColor);
         }
         // Move to the next row
         boxY += HEIGHT_QUAN; // Adjust according to the height of the quan box
         boxs[0] = new Box(X + 0 * WIDTH - 50, boxY - 2 * HEIGHT, WIDTH, HEIGHT_QUAN, squares[0].getViTri(),
-                squares[0].getGiatri(), squares[0].isQuan(),false);
+                squares[0].getGiatri(), squares[0].isQuan(),false,currentColor);
         boxs[6] = new Box(X + 6 * WIDTH - 50, boxY - 2 * HEIGHT, WIDTH, HEIGHT_QUAN, squares[6].getViTri(),
-                squares[6].getGiatri(), squares[6].isQuan(),false);
+                squares[6].getGiatri(), squares[6].isQuan(),false,currentColor);
         // Move to the next row
         boxY += HEIGHT; // Adjust according to the height of the box
         boxs[12] = new Box(X + 3 * WIDTH - 50, (int) (boxY  - 0.3 * HEIGHT), WIDTH, HEIGHT, squares[12].getViTri(),
-                squares[12].getGiatri(), squares[12].isQuan(),false);
+                squares[12].getGiatri(), squares[12].isQuan(),false,currentColor);
         boxs[13] = new Box(X + 3 * WIDTH - 50, (int) (boxY - 4.5 * HEIGHT), WIDTH, HEIGHT, squares[13].getViTri(),
-                squares[13].getGiatri(), squares[13].isQuan(),false);
+                squares[13].getGiatri(), squares[13].isQuan(),false,currentColor);
     }
     
 
@@ -62,6 +64,14 @@ public class Table extends JFrame {
         for (int i = 0; i < boxs.length; i++) {
             boxs[i].draw(g2d);
         }
+    }
+    
+    public void setCurrentColor(Color color) {
+        this.currentColor = color;
+    }
+    
+    public Color getStoneColor() {
+    	 return currentColor;
     }
 
     public void setSquares(Square[] squares) {

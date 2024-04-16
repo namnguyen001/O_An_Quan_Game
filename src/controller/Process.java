@@ -62,10 +62,16 @@ public class Process {
 
 	public int move(int viTri, int direction) {
 	    int giaTri = squares[viTri].getGiatri();
+
+	    if (giaTri == 0) {
+	        return 0;
+	    }
+
 	    squares[viTri].setGiatri(0);
+
 	    while (giaTri != 0) {
-	        viTri +=direction;  
-	        if (viTri == 12) {   
+	        viTri += direction;
+	        if (viTri == 12) {
 	            viTri = 0;
 	        } else if (viTri == -1) {
 	            viTri = 11;
@@ -82,43 +88,43 @@ public class Process {
 	    } else if (viTri == -1) {
 	        viTri = 11;
 	    }
-	    // the following condition checks could cause spinning in the loop
 	    if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
 	        return move(viTri, direction);
 	    } else {
-	        return viTri--;   
+	        return viTri--;
 	    }
 	}
 
+
 	public int kill(int viTri, int direction) {
-	    if (squares[viTri].getGiatri() == 0 && viTri % 6 != 0) {
-	        viTri += direction; 
-	        if (viTri == 12) {
-	            viTri = 0;
-	        } else if (viTri == -1) {
-	            viTri = 11;
-	        }
-	        if (squares[viTri].getGiatri() != 0) {
-	            int diem = squares[viTri].getGiatri();
-	            squares[viTri].setGiatri(0);
-	            Score score = new Score(copysSquares(squares));
-	            scores.add(score);
-	            viTri += direction;
-	            if (viTri == 12) {
-	                viTri = 0;
-	            } else if (viTri == -1) {
-	                viTri = 11;
-	            }
-	            if (squares[viTri].getGiatri() == 0 && viTri % 6 != 0) {
-	                return diem + kill(viTri, direction);
-	            } else {
-	                return diem;
-	            }
-	        }
-	        return 0;
-	    }
-	    return 0;
-	} 
+		if (squares[viTri].getGiatri() == 0 && viTri % 6 != 0) {
+			viTri += direction;
+			if (viTri == 12) {
+				viTri = 0;
+			} else if (viTri == -1) {
+				viTri = 11;
+			}
+			if (squares[viTri].getGiatri() != 0) {
+				int diem = squares[viTri].getGiatri();
+				squares[viTri].setGiatri(0);
+				Score score = new Score(copysSquares(squares));
+				scores.add(score);
+				viTri += direction;
+				if (viTri == 12) {
+					viTri = 0;
+				} else if (viTri == -1) {
+					viTri = 11;
+				}
+				if (squares[viTri].getGiatri() == 0 && viTri % 6 != 0) {
+					return diem + kill(viTri, direction);
+				} else {
+					return diem;
+				}
+			}
+			return 0;
+		}
+		return 0;
+	}
 
 	public boolean finish() {
 		if (squares[0].getGiatri() == 0 && squares[6].getGiatri() == 0) {
@@ -137,7 +143,6 @@ public class Process {
 		}
 		return false;
 	}
-
 
 	public boolean kiemTraHetQuan(int player) {
 		if (player == 1) {
@@ -184,15 +189,15 @@ public class Process {
 				}
 				squares[12].setGiatri(0);
 				Score score = new Score(copysSquares(squares));
-	            scores.add(score);
+				scores.add(score);
 				return diem;
 			} else {
 				for (int i = 1; i < 6; i++) {
 					squares[i].setGiatri(1);
 				}
-				squares[12].setGiatri(diem-5);
+				squares[12].setGiatri(diem - 5);
 				Score score = new Score(copysSquares(squares));
-	            scores.add(score);
+				scores.add(score);
 				return 5;
 			}
 		} else {
@@ -203,15 +208,15 @@ public class Process {
 				}
 				squares[12].setGiatri(0);
 				Score score = new Score(copysSquares(squares));
-	            scores.add(score);
+				scores.add(score);
 				return diem;
 			} else {
 				for (int i = 7; i < 12; i++) {
 					squares[i].setGiatri(1);
 				}
-				squares[13].setGiatri(diem-5);
+				squares[13].setGiatri(diem - 5);
 				Score score = new Score(copysSquares(squares));
-	            scores.add(score);
+				scores.add(score);
 				return 5;
 			}
 		}

@@ -17,10 +17,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	private Table table;
 	private Process process;
 	private Thread thread;
-	private int player = 1, index = 0, diem =0;
+	private int player = 1, index = 0, diem = 0;
 	private int location, direction;
-	private boolean click,rai;
-	private Image background,playerImage;
+	private boolean click, rai;
+	private Image background, playerImage;
+	private Box[] boxes;
+	private int moveSpeed = 500;
 
 	public GamePanel() {
 		process = new Process();
@@ -31,6 +33,11 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		playerImage = new ImageIcon("src/images/flag.jpg").getImage();
 		thread = new Thread(this);
 		thread.start();
+		boxes = new Box[14];
+		for(int i = 0; i < boxes.length; i++) {
+			 Color stonecolor = null;
+			boxes[i] = new Box(i, i, i, i, i, i, click, click, stonecolor);
+		}
 	}
 
 	@Override
@@ -42,109 +49,125 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	}
 
 	@Override
-    public void run() {
-        while (!process.finish()) {
-            index = 0;
-            process.setScores(new ArrayList<>());
-			if (player == 1) {
-				if (process.kiemTraHetQuan(player)) {
-					process.rai(player);
-					rai = true;
-					table = new Table(process.getScores().get(index).getSquares());
-					repaint();
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					} finally {
-						rai = false;
-					}
-				}
-			} else {
-				if (process.kiemTraHetQuan(player)) {
-					process.rai(player);
-					rai = true;
-					table = new Table(process.getScores().get(index).getSquares());
-					repaint();
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					} finally {
-						rai = false;
-					}
-				}
-			}
-			process.setScores(new ArrayList<>()); // Reset the scores on the process for new calculations
-            if (player == 2) {
-                if (click) {
-                    diem = 0;
-                    if (direction == 1) {
-                        diem = process.kill(process.move(location,-1),-1);
-                        // process.left2(location);
-                    } else {
-                        diem = process.kill(process.move(location,1),1);
-                        // process.right2(location);
-                    }
-                    process.setScorePlayer(diem, 2);
-                    while (index < process.getScores().size()) {
-                        table = new Table(process.getScores().get(index).getSquares());
-                        repaint();
-                        index++;
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    player = 1;
-                    click = false;
-                }
-                repaint();
-            } else {
-                if (click) {
-                    diem = 0;
-                    if (direction == 1) {
-                        diem = process.kill(process.move(location,1),1);
-                        // process.left(location);
-                    } else {
-                        diem = process.kill(process.move(location,-1),-1);
-                        // process.right(location);
-                    }
-                    process.setScorePlayer(diem, 1);
-                    while (index < process.getScores().size()) {
-                        table = new Table(process.getScores().get(index).getSquares());
-                        repaint();
-                        index++;
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    player = 2;
-                    click = false;
-                }
-                repaint();
-            }
-        }
-        JOptionPane.showMessageDialog(null, "Game over", "Game over", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-	private void replayGui(Square[] squaresData) {
-	    table = new Table(squaresData);
-	    repaint();
-	    try {
-	        Thread.sleep(500);
-	    } catch (InterruptedException e) {
-	        e.printStackTrace();
+	public void run() {
+	    while (!process.finish()) {
+	        index = 0;
+	        process.setScores(new ArrayList<>());
+	        if (player == 1) {
+	            if (process.kiemTraHetQuan(player)) {
+	                diem = process.rai(player);
+	                rai = true;
+	                table = new Table(process.getScores().get(index).getSquares());
+	                repaint();
+	                try {
+	                    Thread.sleep(500);
+	                } catch (InterruptedException e) {
+	                    e.printStackTrace();
+	                } finally {
+	                    rai = false;
+	                }
+	            }
+	        } else {
+	            if (process.kiemTraHetQuan(player)) {
+	                diem = process.rai(player);
+	                rai = true;
+	                table = new Table(process.getScores().get(index).getSquares());
+	                repaint();
+	                try {
+	                    Thread.sleep(500);
+	                } catch (InterruptedException e) {
+	                    e.printStackTrace();
+	                } finally {
+	                    rai = false;
+	                }
+	            }
+	        }
+	        process.setScores(new ArrayList<>()); // Reset the scores on the process for new calculations
+	        if (player == 2) {
+	            if (click) {
+	                diem = 0;
+	                if (direction == 1) {
+	                    diem = process.kill(process.move(location, -1), -1);
+	                } else {
+	                    diem = process.kill(process.move(location, 1), 1);
+	                }
+	                process.setScorePlayer(diem, 2);
+	                while (index < process.getScores().size()) {
+	                    table = new Table(process.getScores().get(index).getSquares());
+	                    repaint();
+	                    index++;
+	                    try {
+	                        Thread.sleep(moveSpeed);
+	                    } catch (InterruptedException e) {
+	                        e.printStackTrace();
+	                    }
+	                }
+	                player = 1;
+	                click = false;
+	            }
+	            repaint();
+	        } else {
+	            if (click) {
+	                diem = 0;
+	                if (direction == 1) {
+	                    diem = process.kill(process.move(location, 1), 1);
+	                } else {
+	                    diem = process.kill(process.move(location, -1), -1);
+	                }
+	                process.setScorePlayer(diem, 1);
+	                while (index < process.getScores().size()) {
+	                    table = new Table(process.getScores().get(index).getSquares());
+	                    repaint();
+	                    index++;
+	                    try {
+	                        Thread.sleep(moveSpeed);
+	                    } catch (InterruptedException e) {
+	                        e.printStackTrace();
+	                    }
+	                }
+	                player = 2;
+	                click = false;
+	            }
+	            repaint();
+	        }
+	    }
+	    if (process.getSquares()[12].getGiatri() > process.getSquares()[13].getGiatri()) {
+	        JOptionPane.showMessageDialog(null, "Player 1 wins!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+	    } else if (process.getSquares()[12].getGiatri() < process.getSquares()[13].getGiatri()) {
+	        JOptionPane.showMessageDialog(null, "Player 2 wins!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+	    } else {
+	        JOptionPane.showMessageDialog(null, "It's a tie!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 	    }
 	}
 
-	private boolean gameOver() {
-	    return process.finish();
+	public void setMoveSpeed(int newSpeed) {
+        this.moveSpeed = newSpeed;
+    }
+
+    public int getMoveSpeed() {
+        return this.moveSpeed;
+    }
+	
+//	public void setStoneColor(Color color) {
+//		for (Box box : this.boxes) {
+//			boxes.setStoneColor(color);
+//		}
+//		this.repaint();
+//	}
+
+	public Box[] getBoxes() {
+		return this.boxes;
 	}
 	
+	public void reDraw() {
+		process = new Process();
+		table = new Table(process.getSquares());
+		player = 1;
+		index = 0;
+		diem = 0;
+		click = false;
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
@@ -242,7 +265,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right");
 			player = 2;
 			location = 11;
-			direction= 1;
+			direction = 1;
 			click = true;
 		}
 		if ((px > 196 && px < 232) && (py < 305 && py > 275)) {
@@ -303,15 +326,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		}
 
 	}
-	
-	public void reDraw() {  
-		    process = new Process();
-	        table = new Table(process.getSquares());
-	        player = 1;
-	        index = 0;
-	        diem =0;
-	        click = false;
-   }
+
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -340,5 +355,5 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		table.mouseMoved(e);
 		repaint();
 	}
-	
+
 }

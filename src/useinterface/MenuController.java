@@ -59,5 +59,8 @@ public class MenuController implements ActionListener {
         if (e.getSource() == GameMoi) {
          	mainGame.newGame();
         }
+        if(e.getSource() == CaiDat) {
+        	mainGame.Setting();
+        }
     }
 }
