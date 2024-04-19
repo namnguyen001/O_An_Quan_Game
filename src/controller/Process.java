@@ -195,7 +195,7 @@ public class Process {
 				for (int i = 1; i < 6; i++) {
 					squares[i].setGiatri(1);
 				}
-				squares[12].setGiatri(diem - 5);
+				squares[13].setGiatri(diem - 5);
 				Score score = new Score(copysSquares(squares));
 				scores.add(score);
 				return 5;
@@ -214,7 +214,7 @@ public class Process {
 				for (int i = 7; i < 12; i++) {
 					squares[i].setGiatri(1);
 				}
-				squares[13].setGiatri(diem - 5);
+				squares[12].setGiatri(diem - 5);
 				Score score = new Score(copysSquares(squares));
 				scores.add(score);
 				return 5;

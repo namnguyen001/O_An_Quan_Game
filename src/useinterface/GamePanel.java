@@ -33,11 +33,6 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		playerImage = new ImageIcon("src/images/flag.jpg").getImage();
 		thread = new Thread(this);
 		thread.start();
-		boxes = new Box[14];
-		for(int i = 0; i < boxes.length; i++) {
-			 Color stonecolor = null;
-			boxes[i] = new Box(i, i, i, i, i, i, click, click, stonecolor);
-		}
 	}
 
 	@Override
@@ -50,7 +45,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 
 	@Override
 	public void run() {
-	    while (!process.finish()) {
+		while (!Thread.currentThread().isInterrupted() && !process.finish()) {
 	        index = 0;
 	        process.setScores(new ArrayList<>());
 	        if (player == 1) {
@@ -82,7 +77,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	                }
 	            }
 	        }
-	        process.setScores(new ArrayList<>()); // Reset the scores on the process for new calculations
+	        process.setScores(new ArrayList<>()); 
 	        if (player == 2) {
 	            if (click) {
 	                diem = 0;
@@ -148,25 +143,24 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
         return this.moveSpeed;
     }
 	
-//	public void setStoneColor(Color color) {
-//		for (Box box : this.boxes) {
-//			boxes.setStoneColor(color);
-//		}
-//		this.repaint();
-//	}
-
-	public Box[] getBoxes() {
-		return this.boxes;
-	}
-	
-	public void reDraw() {
-		process = new Process();
-		table = new Table(process.getSquares());
-		player = 1;
-		index = 0;
-		diem = 0;
-		click = false;
-	}
+    public void reDraw() {
+    	   if (thread != null) {
+    	       thread.interrupt(); // Dừng Thread hiện tại
+    	   }
+    	   
+    	   removeAll();
+    	   process = new Process();
+    	   table = new Table(process.getSquares());
+    	   addMouseListener(this);
+    	   addMouseMotionListener(this);
+    	   player = 1;
+    	   index = 0;
+    	   diem = 0;
+    	   click = false;
+    	   thread = new Thread(this);
+    	   thread.start();
+    	   repaint();
+    	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

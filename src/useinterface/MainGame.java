@@ -4,71 +4,65 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import controller.Process;
 import gameinterface.*;
 
-
 public class MainGame extends JFrame {
 
-    private JLabel jlabel;
-    private MenuController menuControl;
-    private GamePanel gamePanel;
-    public int currentTeam = 0;
-    int numberInBox = 5;
-    int numberInScoreBox = 10;
-    private StartGame start;
-    private Process process; 
-    private MainGame mainGame;
-    private Table table;
-    private gameinterface.Box[] boxs;
+	private JLabel jlabel;
+	private MenuController menuControl;
+	private GamePanel gamePanel;
+	public int currentTeam = 0;
+	int numberInBox = 5;
+	int numberInScoreBox = 10;
+	private StartGame start;
+	private Process process;
+	private MainGame mainGame;
+	private Table table;
+	private gameinterface.Box[] boxs;
 
-    public MainGame() {
-    	this.setTitle("Ô Ăn Quan");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public MainGame() {
+		this.setTitle("Ô Ăn Quan");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setSize(713, 600);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        
-        start = new StartGame(this);
-        add(start);
-        
-        gamePanel = new GamePanel();
-        process = new Process();
-        boxs = gamePanel.getBoxes();
-       
-        this.setVisible(true);
-        
-        
-    }
+		setSize(713, 600);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
-    public void createnewgame() {
-        getContentPane().remove(start);
-        getContentPane().repaint();
-        
-        gamePanel = new GamePanel(); 
-        getContentPane().add(gamePanel); 
-        
-        boxs = gamePanel.getBoxes();
-     
-        getContentPane().revalidate();
-        getContentPane().repaint();
-  
-        menuControl = new MenuController(this);
-        this.setJMenuBar(menuControl.getMenu());
-    }
+		start = new StartGame(this);
+		add(start);
 
+		gamePanel = new GamePanel();
+		process = new Process();
 
+		this.setVisible(true);
 
-    public void setTextJlabel(String s) {
-        this.jlabel.setText(s);
-    }
+	}
 
+	public void createnewgame() {
+		getContentPane().remove(start);
+		getContentPane().repaint();
 
-    void showMore() {
+		gamePanel = new GamePanel();
+		getContentPane().add(gamePanel);
+
+		getContentPane().revalidate();
+		getContentPane().repaint();
+
+		menuControl = new MenuController(this);
+		this.setJMenuBar(menuControl.getMenu());
+	}
+
+	public void setTextJlabel(String s) {
+		this.jlabel.setText(s);
+	}
+
+	void showMore() {
 		String s = "The game simulates the Ô Ăn Quan .\nAuthor: NG.\nHave fun.";
 		JOptionPane.showMessageDialog(this, s, "Ô Ăn Quan", JOptionPane.PLAIN_MESSAGE);
 	}
@@ -111,7 +105,7 @@ public class MainGame extends JFrame {
 		setupFrame.setLayout(null);
 
 		Font fontMenu = new Font("SansSerif", Font.BOLD, 15);
-		
+
 		JButton colorButton = new JButton("Chọn màu sỏi");
 		colorButton.setBounds(55, 20, 150, 30);
 		colorButton.setFont(fontMenu);
@@ -124,17 +118,15 @@ public class MainGame extends JFrame {
 				}
 			}
 		});
-		
-		JLabel lbSpeed=new JLabel("Tốc độ di chuyển");
-		lbSpeed.setBounds(55,80,150,30);
+
+		JLabel lbSpeed = new JLabel("Tốc độ di chuyển");
+		lbSpeed.setBounds(55, 80, 150, 30);
 		lbSpeed.setFont(fontMenu);
 		setupFrame.add(lbSpeed);
-		
-		
-		JSpinner spSpeed = new JSpinner(new SpinnerNumberModel(500,100,800,100));
-		spSpeed.setBounds(300,80,50,30);
-		setupFrame.add(spSpeed);
 
+		JSpinner spSpeed = new JSpinner(new SpinnerNumberModel(500, 100, 800, 100));
+		spSpeed.setBounds(300, 80, 50, 30);
+		setupFrame.add(spSpeed);
 
 		JButton dongY = new JButton("Chấp nhận");
 		dongY.setBounds(55, 130, 130, 35);
@@ -142,19 +134,12 @@ public class MainGame extends JFrame {
 		dongY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (table != null) {
-	                Color newColor = (Color) colorButton.getBackground();
-	                table.setCurrentColor(newColor);
-	                // Assuming 'boxs' is declared and initialized somewhere else
-	                if (boxs != null) {
-	                    for (gameinterface.Box box : boxs) {
-	                        box.setCurrentColor(newColor);
-	                    }
-	                    table.repaint();
-	                }
-	            }
-				int newSpeed = (Integer)spSpeed.getValue();
-
-		        gamePanel.setMoveSpeed(newSpeed);
+					Color newColor = (Color) colorButton.getBackground();
+					table.setCurrentColor(newColor);
+					table.repaint();
+				}
+				int newSpeed = (Integer) spSpeed.getValue();
+				gamePanel.setMoveSpeed(newSpeed);
 				setupFrame.setVisible(false);
 			}
 		});
@@ -167,12 +152,12 @@ public class MainGame extends JFrame {
 				setupFrame.setVisible(false);
 			}
 		});
-		
+
 		setupFrame.add(colorButton);
 		setupFrame.add(dongY);
 		setupFrame.add(huyBo);
 		setupFrame.setLocationRelativeTo(this);
 		setupFrame.setVisible(true);
 	}
-   
+
 }
