@@ -17,8 +17,9 @@ public class Box {
 	private boolean isArrowVisible;
 	private Image leftArrow, rightArrow;
 	public boolean[] isQuan;
-	public Color stoneColor;
-	private Color currentColor;
+	Color currentColor;
+	private Box[] boxs = new Box[14];
+	private Table table;
 
 	public Box(int x, int y, int width, int height, int vitri, int giatri, boolean isquan, boolean isArrowVisible,
 			Color stoneColor) {
@@ -32,7 +33,7 @@ public class Box {
 		getImage();
 		imagesquare = imagebox;
 		this.isArrowVisible = isArrowVisible;
-		this.stoneColor = stoneColor;
+		this.currentColor = currentColor;
 	}
 
 	public void getImage() {
@@ -72,15 +73,13 @@ public class Box {
 			g2d.drawImage(imagebox2, x, y, width, height, null);
 			g2d.drawString(giatri + "", x + 30, y + 70);
 		}
-
-		g2d.setColor(Color.decode("#48423d"));
 		if (isquan) {
-			g2d.setColor(stoneColor);
+			g2d.setColor(currentColor);
 			for (int i = 0; i < giatri; i++) {
 				g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i] + 40, 13, 10);
 			}
 		} else {
-			g2d.setColor(stoneColor);
+			g2d.setColor(currentColor);
 			for (int i = 0; i < giatri; i++) {
 				g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i], 13, 10);
 			}
@@ -91,14 +90,19 @@ public class Box {
 		}
 	}
 
-	public Color setStoneColor(Color color) {
-		this.stoneColor = color;
-		return stoneColor;
-	}
 	
-	public void setCurrentColor(Color color) {
-        this.currentColor = color;
-    }
+	public void setStoneColor(Color color) {
+	    this.currentColor = color;
+	    for (Box box : boxs) {
+	        if (box != null) {
+	            box.currentColor = color;
+	        }
+	    }
+	}
+
+	public Color getStoneColor() {
+		return this.currentColor;
+	}
 
 	public void mouseEntered(MouseEvent e) {
 		if (!isquan && vitri != 12 && vitri != 13 && vitri > 0) {

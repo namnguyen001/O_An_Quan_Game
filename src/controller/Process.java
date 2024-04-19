@@ -15,6 +15,7 @@ public class Process {
 	Box[] boxs = new Box[14];
 	private Score[] scBox;
 	private Table table;
+	private int currentPlayer=1;
 
 	public Process() {
 		scores = new ArrayList<>();
@@ -220,5 +221,14 @@ public class Process {
 				return 5;
 			}
 		}
+	}
+	
+
+	public void setCurrentPlayer(int currentPlayer) {
+	    this.currentPlayer = currentPlayer;
+	}
+
+	public int getCurrentPlayer() {
+	    return this.currentPlayer;
 	}
 }

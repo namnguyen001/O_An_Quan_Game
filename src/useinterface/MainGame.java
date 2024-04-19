@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import controller.Process;
 import gameinterface.*;
+import gameinterface.Box;
 
 public class MainGame extends JFrame {
 
@@ -24,7 +25,7 @@ public class MainGame extends JFrame {
 	private Process process;
 	private MainGame mainGame;
 	private Table table;
-	private gameinterface.Box[] boxs;
+	private Box[] boxs = new Box[14];
 
 	public MainGame() {
 		this.setTitle("Ô Ăn Quan");
@@ -98,66 +99,68 @@ public class MainGame extends JFrame {
 	}
 
 	void Setting() {
-		JFrame setupFrame = new JFrame("Cài đặt");
-		final int stWidth = 400, stHeight = 220;
-		setupFrame.setSize(stWidth, stHeight);
-		setupFrame.setResizable(false);
-		setupFrame.setLayout(null);
+	    JFrame setupFrame = new JFrame("Cài đặt");
+	    final int stWidth = 400, stHeight = 220;
+	    setupFrame.setSize(stWidth, stHeight);
+	    setupFrame.setResizable(false);
+	    setupFrame.setLayout(null);
 
-		Font fontMenu = new Font("SansSerif", Font.BOLD, 15);
+	    Font fontMenu = new Font("SansSerif", Font.BOLD, 15);
 
-		JButton colorButton = new JButton("Chọn màu sỏi");
-		colorButton.setBounds(55, 20, 150, 30);
-		colorButton.setFont(fontMenu);
-		colorButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Color initialBackground = colorButton.getBackground();
-				Color newColor = JColorChooser.showDialog(null, "Chọn màu sỏi", initialBackground);
-				if (newColor != null) {
-					colorButton.setBackground(newColor);
-				}
-			}
-		});
+	    JButton colorButton = new JButton("Chọn màu sỏi");
+	    colorButton.setBounds(55, 20, 150, 30);
+	    colorButton.setFont(fontMenu);
+	    colorButton.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Color initialBackground = colorButton.getBackground();
+	            Color newColor = JColorChooser.showDialog(null, "Chọn màu sỏi", initialBackground);
+	            if (newColor != null) {
+	                colorButton.setBackground(newColor); 
+	                gamePanel.getTable().setStoneColor(newColor); 
+	            }
+	        }
+	    });
 
-		JLabel lbSpeed = new JLabel("Tốc độ di chuyển");
-		lbSpeed.setBounds(55, 80, 150, 30);
-		lbSpeed.setFont(fontMenu);
-		setupFrame.add(lbSpeed);
+	    JLabel lbSpeed = new JLabel("Tốc độ di chuyển");
+	    lbSpeed.setBounds(55, 80, 150, 30);
+	    lbSpeed.setFont(fontMenu);
+	    setupFrame.add(lbSpeed);
 
-		JSpinner spSpeed = new JSpinner(new SpinnerNumberModel(500, 100, 800, 100));
-		spSpeed.setBounds(300, 80, 50, 30);
-		setupFrame.add(spSpeed);
+	    JSpinner spSpeed = new JSpinner(new SpinnerNumberModel(500, 100, 800, 100));
+	    spSpeed.setBounds(300, 80, 50, 30);
+	    setupFrame.add(spSpeed);
 
-		JButton dongY = new JButton("Chấp nhận");
-		dongY.setBounds(55, 130, 130, 35);
-		dongY.setFont(fontMenu);
-		dongY.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (table != null) {
-					Color newColor = (Color) colorButton.getBackground();
-					table.setCurrentColor(newColor);
-					table.repaint();
-				}
-				int newSpeed = (Integer) spSpeed.getValue();
-				gamePanel.setMoveSpeed(newSpeed);
-				setupFrame.setVisible(false);
-			}
-		});
+	    JButton dongY = new JButton("Chấp nhận");
+	    dongY.setBounds(55, 130, 130, 35);
+	    dongY.setFont(fontMenu);
+	    dongY.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Color newColor = colorButton.getBackground();
+	            for (Box box : boxs) {
+	                if (box != null) {
+	                    box.setStoneColor(newColor); 
+	                }
+	            }
+	            int newSpeed = (Integer) spSpeed.getValue();
+	            gamePanel.setMoveSpeed(newSpeed);
+	            setupFrame.setVisible(false);
+	        }
+	    });
 
-		JButton huyBo = new JButton("Huỷ bỏ");
-		huyBo.setBounds(200, 130, 100, 35);
-		huyBo.setFont(fontMenu);
-		huyBo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setupFrame.setVisible(false);
-			}
-		});
+	    JButton huyBo = new JButton("Huỷ bỏ");
+	    huyBo.setBounds(200, 130, 100, 35);
+	    huyBo.setFont(fontMenu);
+	    huyBo.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            setupFrame.setVisible(false);
+	        }
+	    });
 
-		setupFrame.add(colorButton);
-		setupFrame.add(dongY);
-		setupFrame.add(huyBo);
-		setupFrame.setLocationRelativeTo(this);
-		setupFrame.setVisible(true);
+	    setupFrame.add(colorButton);
+	    setupFrame.add(dongY);
+	    setupFrame.add(huyBo);
+	    setupFrame.setLocationRelativeTo(this);
+	    setupFrame.setVisible(true);
 	}
 
 }
