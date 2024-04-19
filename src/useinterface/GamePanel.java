@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	        process.setScores(new ArrayList<>());
 	        if (player == 1) {
 	            if (process.kiemTraHetQuan(player)) {
-	                diem = process.rai(player);
+	                process.rai(player);
 	                rai = true;
 	                table = new Table(process.getScores().get(index).getSquares());
 	                repaint();
@@ -64,7 +64,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	            }
 	        } else {
 	            if (process.kiemTraHetQuan(player)) {
-	                diem = process.rai(player);
+	                process.rai(player);
 	                rai = true;
 	                table = new Table(process.getScores().get(index).getSquares());
 	                repaint();

@@ -187,7 +187,7 @@ public class Process {
 				for (int i = 1; i <= diem; i++) {
 					squares[i].setGiatri(1);
 				}
-				squares[12].setGiatri(0);
+				squares[13].setGiatri(0);
 				Score score = new Score(copysSquares(squares));
 				scores.add(score);
 				return diem;
