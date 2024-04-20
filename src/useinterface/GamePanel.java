@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	private int player = 1, index = 0, diem = 0;
 	private int location, direction;
 	private boolean click, rai;
-	private Image background, playerImage;
+	private Image background, playerImage,co;
 	private Box[] boxes;
 	private int moveSpeed = 500;
 
@@ -31,6 +31,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		addMouseMotionListener(this);
 		background = new ImageIcon("src/images/background.jpg").getImage();
 		playerImage = new ImageIcon("src/images/flag.jpg").getImage();
+		co =  new ImageIcon("src/images/co1.png").getImage();
 		thread = new Thread(this);
 		thread.start();
 	}
@@ -41,6 +42,13 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(background, 0, 0, getWidth(), getHeight(), null);
 		table.draw(g2d);
+		if (player == 1) {
+			g2d.drawImage(co, 240, 35, 70, 70, null);
+			g2d.drawString("Lượt player 1", 340, 130);
+		} else {
+			g2d.drawImage(co, 240, 435, 70, 70, null);
+			g2d.drawString("Lượt player 2", 340, 400);
+		}
 	}
 
 	@Override
