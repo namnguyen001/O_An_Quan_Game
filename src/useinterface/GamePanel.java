@@ -44,10 +44,10 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		table.draw(g2d);
 		if (player == 1) {
 			g2d.drawImage(co, 240, 35, 70, 70, null);
-			g2d.drawString("Lượt player 1", 340, 130);
+			g2d.drawString("Player 1's Turn", 340, 130);
 		} else {
 			g2d.drawImage(co, 240, 435, 70, 70, null);
-			g2d.drawString("Lượt player 2", 340, 400);
+			g2d.drawString("Player 2's Turn", 340, 400);
 		}
 	}
 
