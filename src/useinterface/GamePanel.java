@@ -20,11 +20,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	private int player = 1, index = 0, diem = 0;
 	private int location, direction;
 	private boolean click, rai;
-<<<<<<< HEAD
 	private Image background, playerImage, co;
-=======
-	private Image background, playerImage,co;
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 	private Box[] boxes;
 	private int moveSpeed = 500;
 	private MainGame mainGame;
@@ -36,11 +32,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		addMouseMotionListener(this);
 		background = new ImageIcon("src/images/background.jpg").getImage();
 		playerImage = new ImageIcon("src/images/flag.jpg").getImage();
-<<<<<<< HEAD
 		co = new ImageIcon("src/images/co1.png").getImage();
-=======
-		co =  new ImageIcon("src/images/co1.png").getImage();
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 		thread = new Thread(this);
 		thread.start();
 		this.mainGame = mainGame;
@@ -52,7 +44,6 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(background, 0, 0, getWidth(), getHeight(), null);
 		table.draw(g2d);
-<<<<<<< HEAD
 		String[] playerNames = mainGame.getPlayerNames();
 		if (player == 1) {
 			g2d.drawImage(co, 240, 35, 70, 70, null);
@@ -60,14 +51,6 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		} else {
 			g2d.drawImage(co, 240, 435, 70, 70, null);
 			g2d.drawString(playerNames[1] + "'s Turn", 340, 400);
-=======
-		if (player == 1) {
-			g2d.drawImage(co, 240, 35, 70, 70, null);
-			g2d.drawString("Player 1's Turn", 340, 130);
-		} else {
-			g2d.drawImage(co, 240, 435, 70, 70, null);
-			g2d.drawString("Player 2's Turn", 340, 400);
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 		}
 	}
 
@@ -154,31 +137,20 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				repaint();
 			}
 		}
-<<<<<<< HEAD
-		
 		String[] playerNames = mainGame.getPlayerNames();
-		
+
 		if (process.getSquares()[12].getGiatri() > process.getSquares()[13].getGiatri()) {
 			JOptionPane.showMessageDialog(null, playerNames[1] + " wins!", "Game Over",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else if (process.getSquares()[12].getGiatri() < process.getSquares()[13].getGiatri()) {
 			JOptionPane.showMessageDialog(null, playerNames[0] + " wins!", "Game Over",
 					JOptionPane.INFORMATION_MESSAGE);
-=======
-		if (process.getSquares()[12].getGiatri() > process.getSquares()[13].getGiatri()) {
-			JOptionPane.showMessageDialog(null, "Player 2 wins!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
-		} else if (process.getSquares()[12].getGiatri() < process.getSquares()[13].getGiatri()) {
-			JOptionPane.showMessageDialog(null, "Player 1 wins!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
-		} else {
-			JOptionPane.showMessageDialog(null, "It's a tie!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
 	public void setMoveSpeed(int newSpeed) {
 		this.moveSpeed = newSpeed;
 	}
-<<<<<<< HEAD
 
 	public int getMoveSpeed() {
 		return this.moveSpeed;
@@ -189,57 +161,24 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	}
 
 	public void reDraw() {
-        if(thread != null){
-            thread.interrupt();
-        }
+		if (thread != null) {
+			thread.interrupt();
+		}
 
-        removeMouseListener(this);
-        removeMouseMotionListener(this);
-        process = new Process();
-        table = new Table(process.getSquares());
-        addMouseListener(this);
-        addMouseMotionListener(this);
-        process.setCurrentPlayer(1);
-        player = 1;
-        index = 0;
-        diem = 0;
-        click = false;
-        thread = new Thread(this);
-        thread.start();
-        mainGame.setDefaultPlayerNames();  
-        repaint();
-    }
-
-=======
-
-	public int getMoveSpeed() {
-		return this.moveSpeed;
+		removeMouseListener(this);
+		removeMouseMotionListener(this);
+		process = new Process();
+		table = new Table(process.getSquares());
+		addMouseListener(this);
+		addMouseMotionListener(this);
+		process.setCurrentPlayer(1);
+		index = 0;
+		diem = 0;
+		click = false;
+		thread = new Thread(this);
+		thread.start();
+		repaint();
 	}
-
-	public Table getTable() {
-		return this.table;
-	}
-
-	public void reDraw() {
-	    if (thread != null) {
-	        thread.interrupt(); 
-	    }
-
-	    removeMouseListener(this);
-	    removeMouseMotionListener(this);
-	    process = new Process();
-	    table = new Table(process.getSquares());
-	    addMouseListener(this);
-	    addMouseMotionListener(this);
-	    process.setCurrentPlayer(1);
-	    index = 0;
-	    diem = 0;
-	    click = false;
-	    thread = new Thread(this);
-	    thread.start();
-	    repaint();
-	}
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -258,7 +197,6 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		if ((px > 102 && px < 137) && (py < 215 && py > 185)) {
 			System.out.println("left");
 			if (process.getCurrentPlayer() == 1) {
-<<<<<<< HEAD
 				player = 1;
 				location = 1;
 				direction = -1;
@@ -267,17 +205,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			} else {
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				location = 1;
-				direction = -1;
-				click = true;
-
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
-
 		}
 		if ((px > 160 && px < 195) && (py < 215 && py > 185)) {
 			System.out.println("right");
@@ -286,17 +214,10 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				location = 1;
 				direction = 1;
 				click = true;
-<<<<<<< HEAD
 				process.setCurrentPlayer(2);
 			} else {
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 
 		}
@@ -309,14 +230,9 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(2);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
-
 		}
 
 		if ((px > 255 && px < 293) && (py < 215 && py > 185)) {
@@ -328,12 +244,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(2);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 
 		}
@@ -346,12 +258,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(2);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 
@@ -364,12 +272,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(2);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 393 && px < 429) && (py < 215 && py > 185)) {
@@ -381,12 +285,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(2);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 452 && px < 488) && (py < 215 && py > 185)) {
@@ -398,12 +298,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(2);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 
@@ -416,12 +312,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(2);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 551 && px < 587) && (py < 215 && py > 185)) {
@@ -433,12 +325,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(2);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 2's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 
@@ -452,12 +340,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 160 && px < 195) && (py < 305 && py > 275)) {
@@ -469,12 +353,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 196 && px < 232) && (py < 305 && py > 275)) {
@@ -486,12 +366,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 255 && px < 293) && (py < 305 && py > 275)) {
@@ -503,12 +379,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 296 && px < 332) && (py < 305 && py > 275)) {
@@ -520,12 +392,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 355 && px < 391) && (py < 305 && py > 275)) {
@@ -537,12 +405,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 393 && px < 429) && (py < 305 && py > 275)) {
@@ -554,12 +418,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 452 && px < 488) && (py < 305 && py > 275)) {
@@ -571,12 +431,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 		if ((px > 491 && px < 527) && (py < 305 && py > 275)) {
@@ -588,12 +444,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 
@@ -606,12 +458,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 				click = true;
 				process.setCurrentPlayer(1);
 			} else {
-<<<<<<< HEAD
 				JOptionPane.showMessageDialog(this,
 						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
-=======
-				JOptionPane.showMessageDialog(this, "It is Player 1's turn now, please wait for your turn.");
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 			}
 		}
 	}

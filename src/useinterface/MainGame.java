@@ -14,7 +14,6 @@ import gameinterface.Box;
 
 public class MainGame extends JFrame {
 
-<<<<<<< HEAD
 	private JLabel jlabel;
 	private MenuController menuControl;
 	private GamePanel gamePanel;
@@ -29,20 +28,8 @@ public class MainGame extends JFrame {
 	private String playerName1 = "Player 1";
 	private String playerName2 = "Player 2";
 	private String[] defaultPlayerNames = {"Player 1", "Player 2"};
-=======
-    private JLabel jlabel;
-    private MenuController menuControl;
-    private GamePanel gamePanel;
-    public int currentTeam = 0;
-    int numberInBox = 5;
-    int numberInScoreBox = 10;
-    private StartGame start;
-    private Process process;
-    private MainGame mainGame;
-    private Table table;
-    private Box[] boxs = new Box[14];
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
-
+	
+	
     public MainGame() {
         this.setTitle("Ô Ăn Quan");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,29 +41,18 @@ public class MainGame extends JFrame {
         start = new StartGame(this);
         add(start);
 
-<<<<<<< HEAD
 		gamePanel = new GamePanel(this);
 		process = new Process();
-=======
-        gamePanel = new GamePanel();
-        process = new Process();
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 
         this.setVisible(true);
-
     }
 
     public void createnewgame() {
         getContentPane().remove(start);
         getContentPane().repaint();
 
-<<<<<<< HEAD
 		gamePanel = new GamePanel(this);
 		getContentPane().add(gamePanel);
-=======
-        gamePanel = new GamePanel();
-        getContentPane().add(gamePanel);
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 
         getContentPane().revalidate();
         getContentPane().repaint();
@@ -108,7 +84,6 @@ public class MainGame extends JFrame {
         JOptionPane.showMessageDialog(this, content, "Rule", JOptionPane.PLAIN_MESSAGE);
     }
 
-<<<<<<< HEAD
 	public void newGame() {
 	    int option = JOptionPane.showConfirmDialog(this, "Do you want to play again??", "Retard alert",
 	            JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
@@ -117,16 +92,7 @@ public class MainGame extends JFrame {
 	        this.gamePanel.reDraw();
 	    }
 	}
-=======
-    public void newGame() {
-        int option = JOptionPane.showConfirmDialog(this, "Do you want to play again??", "Retard alert",
-                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        if (option == JOptionPane.YES_OPTION) {
-            this.gamePanel.reDraw();
-        }
-    }
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
-
+	
     public void Exit() {
         int option = JOptionPane.showConfirmDialog(this, "Do you want to exit?", "Retard alert",
                 JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
@@ -135,7 +101,6 @@ public class MainGame extends JFrame {
         }
     }
 
-<<<<<<< HEAD
 	void Setting() {
 		JFrame setupFrame = new JFrame("Setting");
 		final int stWidth = 400, stHeight = 220;
@@ -178,50 +143,6 @@ public class MainGame extends JFrame {
 		setupFrame.setLocationRelativeTo(this);
 		setupFrame.setVisible(true);
 	}
-=======
-    void Setting() {
-        JFrame setupFrame = new JFrame("Cài đặt");
-        final int stWidth = 400, stHeight = 220;
-        setupFrame.setSize(stWidth, stHeight);
-        setupFrame.setResizable(false);
-        setupFrame.setLayout(null);
-
-        Font fontMenu = new Font("SansSerif", Font.BOLD, 15);
-        JLabel lbSpeed = new JLabel("Tốc độ di chuyển");
-        lbSpeed.setBounds(55, 50, 150, 30);
-        lbSpeed.setFont(fontMenu);
-        setupFrame.add(lbSpeed);
-
-        JSpinner spSpeed = new JSpinner(new SpinnerNumberModel(500, 100, 800, 100));
-        spSpeed.setBounds(300, 50, 50, 30);
-        setupFrame.add(spSpeed);
-
-        JButton dongY = new JButton("Chấp nhận");
-        dongY.setBounds(55, 130, 130, 35);
-        dongY.setFont(fontMenu);
-        dongY.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int newSpeed = (Integer) spSpeed.getValue();
-                gamePanel.setMoveSpeed(newSpeed);
-                setupFrame.setVisible(false);
-            }
-        });
-
-        JButton huyBo = new JButton("Huỷ bỏ");
-        huyBo.setBounds(250, 130, 100, 35);
-        huyBo.setFont(fontMenu);
-        huyBo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setupFrame.setVisible(false);
-            }
-        });
-
-        setupFrame.add(dongY);
-        setupFrame.add(huyBo);
-        setupFrame.setLocationRelativeTo(this);
-        setupFrame.setVisible(true);
-    }
->>>>>>> 4bf182975810f7f59a71590f311192f14ab31552
 
 	void SetName() {
 		JFrame setupFrame = new JFrame("Name Player");
