@@ -6,11 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import controller.Process;
 import gameinterface.*;
+import gameinterface.Box;
 
 public class MainGame extends JFrame {
 
@@ -24,7 +24,10 @@ public class MainGame extends JFrame {
 	private Process process;
 	private MainGame mainGame;
 	private Table table;
-	private gameinterface.Box[] boxs;
+	private Box[] boxs = new Box[14];
+	private String playerName1 = "Player 1";
+	private String playerName2 = "Player 2";
+	private String[] defaultPlayerNames = {"Player 1", "Player 2"};
 
 	public MainGame() {
 		this.setTitle("Ô Ăn Quan");
@@ -37,7 +40,7 @@ public class MainGame extends JFrame {
 		start = new StartGame(this);
 		add(start);
 
-		gamePanel = new GamePanel();
+		gamePanel = new GamePanel(this);
 		process = new Process();
 
 		this.setVisible(true);
@@ -48,7 +51,7 @@ public class MainGame extends JFrame {
 		getContentPane().remove(start);
 		getContentPane().repaint();
 
-		gamePanel = new GamePanel();
+		gamePanel = new GamePanel(this);
 		getContentPane().add(gamePanel);
 
 		getContentPane().revalidate();
@@ -82,11 +85,12 @@ public class MainGame extends JFrame {
 	}
 
 	public void newGame() {
-		int option = JOptionPane.showConfirmDialog(this, "Do you want to play again??", "Retard alert",
-				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-		if (option == JOptionPane.YES_OPTION) {
-			this.gamePanel.reDraw();
-		}
+	    int option = JOptionPane.showConfirmDialog(this, "Do you want to play again??", "Retard alert",
+	            JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+	    if (option == JOptionPane.YES_OPTION) {
+	        this.setDefaultPlayerNames();
+	        this.gamePanel.reDraw();
+	    }
 	}
 
 	public void Exit() {
@@ -98,54 +102,35 @@ public class MainGame extends JFrame {
 	}
 
 	void Setting() {
-		JFrame setupFrame = new JFrame("Cài đặt");
+		JFrame setupFrame = new JFrame("Setting");
 		final int stWidth = 400, stHeight = 220;
 		setupFrame.setSize(stWidth, stHeight);
 		setupFrame.setResizable(false);
 		setupFrame.setLayout(null);
 
 		Font fontMenu = new Font("SansSerif", Font.BOLD, 15);
-
-		JButton colorButton = new JButton("Chọn màu sỏi");
-		colorButton.setBounds(55, 20, 150, 30);
-		colorButton.setFont(fontMenu);
-		colorButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Color initialBackground = colorButton.getBackground();
-				Color newColor = JColorChooser.showDialog(null, "Chọn màu sỏi", initialBackground);
-				if (newColor != null) {
-					colorButton.setBackground(newColor);
-				}
-			}
-		});
-
-		JLabel lbSpeed = new JLabel("Tốc độ di chuyển");
-		lbSpeed.setBounds(55, 80, 150, 30);
+		JLabel lbSpeed = new JLabel("Speed ​​of movement");
+		lbSpeed.setBounds(55, 50, 150, 30);
 		lbSpeed.setFont(fontMenu);
 		setupFrame.add(lbSpeed);
 
 		JSpinner spSpeed = new JSpinner(new SpinnerNumberModel(500, 100, 800, 100));
-		spSpeed.setBounds(300, 80, 50, 30);
+		spSpeed.setBounds(300, 50, 50, 30);
 		setupFrame.add(spSpeed);
 
-		JButton dongY = new JButton("Chấp nhận");
+		JButton dongY = new JButton("Accept");
 		dongY.setBounds(55, 130, 130, 35);
 		dongY.setFont(fontMenu);
 		dongY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (table != null) {
-					Color newColor = (Color) colorButton.getBackground();
-					table.setCurrentColor(newColor);
-					table.repaint();
-				}
 				int newSpeed = (Integer) spSpeed.getValue();
 				gamePanel.setMoveSpeed(newSpeed);
 				setupFrame.setVisible(false);
 			}
 		});
 
-		JButton huyBo = new JButton("Huỷ bỏ");
-		huyBo.setBounds(200, 130, 100, 35);
+		JButton huyBo = new JButton("Cancel");
+		huyBo.setBounds(250, 130, 100, 35);
 		huyBo.setFont(fontMenu);
 		huyBo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -153,11 +138,74 @@ public class MainGame extends JFrame {
 			}
 		});
 
-		setupFrame.add(colorButton);
 		setupFrame.add(dongY);
 		setupFrame.add(huyBo);
 		setupFrame.setLocationRelativeTo(this);
 		setupFrame.setVisible(true);
 	}
 
+	void SetName() {
+		JFrame setupFrame = new JFrame("Name Player");
+		final int stWidth = 400, stHeight = 220;
+		setupFrame.setSize(stWidth, stHeight);
+		setupFrame.setResizable(false);
+		setupFrame.setLayout(null);
+
+		Font fontMenu = new Font("SansSerif", Font.BOLD, 15);
+		JLabel Player1 = new JLabel("PLayer 1:");
+		Player1.setBounds(50, 20, 150, 30);
+		Player1.setFont(fontMenu);
+		setupFrame.add(Player1);
+
+		JTextField txtPlayer1 = new JTextField();
+		txtPlayer1.setBounds(130, 20, 200, 30);
+		txtPlayer1.setFont(fontMenu);
+		setupFrame.add(txtPlayer1);
+
+		JLabel Player2 = new JLabel("PLayer 2:");
+		Player2.setBounds(50, 90, 150, 30);
+		Player2.setFont(fontMenu);
+		setupFrame.add(Player2);
+
+		JTextField txtPlayer2 = new JTextField();
+		txtPlayer2.setBounds(130, 90, 200, 30);
+		txtPlayer2.setFont(fontMenu);
+		setupFrame.add(txtPlayer2);
+
+		JButton dongY = new JButton("Accept");
+		dongY.setBounds(50, 150, 100, 30);
+		dongY.setFont(fontMenu);
+		dongY.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				playerName1 = txtPlayer1.getText();
+				playerName2 = txtPlayer2.getText();
+				setupFrame.setVisible(false);
+				gamePanel.repaint();
+			}
+		});
+
+		JButton huyBo = new JButton("Cancel");
+		huyBo.setBounds(250, 150, 100, 30);
+		huyBo.setFont(fontMenu);
+		huyBo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setupFrame.setVisible(false);
+			}
+		});
+
+		setupFrame.add(dongY);
+		setupFrame.add(huyBo);
+		setupFrame.setLocationRelativeTo(this);
+		setupFrame.setVisible(true);
+	}
+	
+	public String[] getPlayerNames(){
+	    return new String[]{playerName1, playerName2};
+	}
+	
+	public void setDefaultPlayerNames() {
+		this.playerName1 = defaultPlayerNames[0];
+		this.playerName2 = defaultPlayerNames[1];
+    }
+	
 }

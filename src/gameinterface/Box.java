@@ -17,11 +17,10 @@ public class Box {
 	private boolean isArrowVisible;
 	private Image leftArrow, rightArrow;
 	public boolean[] isQuan;
-	public Color stoneColor;
-	private Color currentColor;
+	private Box[] boxs = new Box[14];
+	private Table table;
 
-	public Box(int x, int y, int width, int height, int vitri, int giatri, boolean isquan, boolean isArrowVisible,
-			Color stoneColor) {
+	public Box(int x, int y, int width, int height, int vitri, int giatri, boolean isquan, boolean isArrowVisible) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -32,17 +31,16 @@ public class Box {
 		getImage();
 		imagesquare = imagebox;
 		this.isArrowVisible = isArrowVisible;
-		this.stoneColor = stoneColor;
 	}
 
 	public void getImage() {
 		try {
-			imagebox = new ImageIcon("src/images/square.png").getImage(); // Load square image
-			imageleft = new ImageIcon("src/images/left.jpg").getImage(); // Load left image
-			imageright = new ImageIcon("src/images/right.jpg").getImage(); // Load right image
-			imagebox2 = new ImageIcon("src/images/box2.jpg").getImage(); // Load box2 image
-			imagebox1 = new ImageIcon("src/images/box1.jpg").getImage(); // Load box1 image
-			flag = new ImageIcon("src/images/flag.jpg").getImage(); // Load flag image
+			imagebox = new ImageIcon("src/images/square.png").getImage(); 
+			imageleft = new ImageIcon("src/images/left.jpg").getImage(); 
+			imageright = new ImageIcon("src/images/right.jpg").getImage(); 
+			imagebox2 = new ImageIcon("src/images/box2.jpg").getImage(); 
+			imagebox1 = new ImageIcon("src/images/box1.jpg").getImage(); 
+			flag = new ImageIcon("src/images/flag.jpg").getImage(); 
 			buttonImage = new ImageIcon("src/images/square.jpg").getImage();
 			leftArrow = new ImageIcon("src/images/aleft.jpg").getImage();
 			rightArrow = new ImageIcon("src/images/aright.jpg").getImage();
@@ -52,39 +50,34 @@ public class Box {
 	}
 
 	public void draw(Graphics2D g2d) {
-		g2d.setFont(new Font("NewellsHand", Font.PLAIN, 10));
+		g2d.setFont(new Font("NewellsHand", Font.BOLD, 20));
 		g2d.setColor(Color.BLACK);
+		
 		if (!isquan && vitri != 12 && vitri != 13) {
 			g2d.drawImage(imagesquare, x, y, width, height, null);
-			g2d.drawString(giatri + "", x + 5, y + 5);
+			g2d.drawString(giatri + "", x + 40, y + 20);
 		} else if (isquan) {
 			if (vitri == 0) {
 				g2d.drawImage(imageleft, x, y, width, height, null);
-				g2d.drawString(giatri + "", x + 35, y + 110);
+				g2d.drawString(giatri + "", x + 35, y + 50);
 			} else {
 				g2d.drawImage(imageright, x, y, width, height, null);
-				g2d.drawString(giatri + "", x + 30, y + 110);
+				g2d.drawString(giatri + "", x + 35, y + 50);
 			}
 		} else if (vitri == 12) {
 			g2d.drawImage(imagebox1, x, y, width, height, null);
-			g2d.drawString(giatri + "", x + 30, y + 70);
+			g2d.drawString(giatri + "", x + 110, y + 70);
 		} else {
 			g2d.drawImage(imagebox2, x, y, width, height, null);
-			g2d.drawString(giatri + "", x + 30, y + 70);
+			g2d.drawString(giatri + "", x + 110, y + 70);
 		}
-
-		g2d.setColor(Color.decode("#48423d"));
 		if (isquan) {
-			g2d.setColor(stoneColor);
 			for (int i = 0; i < giatri; i++) {
-				int idx = i % Table.coordinatesX.length;
-				g2d.fillOval(x + Table.coordinatesX[idx], y + Table.coordinatesY[idx] + 40, 13, 10);
+				g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i] + 40, 13, 10);
 			}
 		} else {
-			g2d.setColor(stoneColor);
 			for (int i = 0; i < giatri; i++) {
-				int idx = i % Table.coordinatesX.length;
-				g2d.fillOval(x + Table.coordinatesX[idx], y + Table.coordinatesY[idx], 13, 10);
+				g2d.fillOval(x + Table.coordinatesX[i], y + Table.coordinatesY[i], 13, 10);
 			}
 		}
 		if (isArrowVisible) {
@@ -93,15 +86,7 @@ public class Box {
 		}
 	}
 
-	public Color setStoneColor(Color color) {
-		this.stoneColor = color;
-		return stoneColor;
-	}
 	
-	public void setCurrentColor(Color color) {
-        this.currentColor = color;
-    }
-
 	public void mouseEntered(MouseEvent e) {
 		if (!isquan && vitri != 12 && vitri != 13 && vitri > 0) {
 			Point p = e.getPoint();

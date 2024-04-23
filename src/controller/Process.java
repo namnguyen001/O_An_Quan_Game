@@ -15,6 +15,7 @@ public class Process {
 	Box[] boxs = new Box[14];
 	private Score[] scBox;
 	private Table table;
+	private int currentPlayer=1;
 
 	public Process() {
 		scores = new ArrayList<>();
@@ -187,7 +188,7 @@ public class Process {
 				for (int i = 1; i <= diem; i++) {
 					squares[i].setGiatri(1);
 				}
-				squares[12].setGiatri(0);
+				squares[13].setGiatri(0);
 				Score score = new Score(copysSquares(squares));
 				scores.add(score);
 				return diem;
@@ -220,5 +221,14 @@ public class Process {
 				return 5;
 			}
 		}
+	}
+	
+
+	public void setCurrentPlayer(int currentPlayer) {
+	    this.currentPlayer = currentPlayer;
+	}
+
+	public int getCurrentPlayer() {
+	    return this.currentPlayer;
 	}
 }

@@ -10,41 +10,50 @@ import javax.swing.JMenuItem;
 public class MenuController implements ActionListener {
     private MainGame mainGame;
     private JMenuBar menuBar;
-    private JMenu menu, help;
-    private JMenuItem GameMoi, Thoat, CaiDat, Luat, Them;
+    private JMenu menu, help, setname;
+    private JMenuItem GameMoi, Thoat, CaiDat, Luat, Them, SetName;
 
     public MenuController(MainGame mainGame) {
         super();
         this.mainGame = mainGame;
         menu = new JMenu("Menu");
         help = new JMenu("Help");
+        setname = new JMenu("Set Name");
         GameMoi = new JMenuItem("New Game");
-        GameMoi.addActionListener(this);
         Thoat = new JMenuItem("Exit");
-        Thoat.addActionListener(this);
         CaiDat = new JMenuItem("Setting");
-        CaiDat.addActionListener(this);
         Luat = new JMenuItem("Rule");
-        Luat.addActionListener(this);
         Them = new JMenuItem("More");
+        SetName = new JMenuItem("Set Name");
+
+        GameMoi.addActionListener(this);
+        Thoat.addActionListener(this);
+        CaiDat.addActionListener(this);
+        Luat.addActionListener(this);
         Them.addActionListener(this);
+        SetName.addActionListener(this);
+
         menu.add(GameMoi);
         menu.add(CaiDat);
         menu.add(Thoat);
         help.add(Luat);
         help.add(Them);
-        Font fontMenu=new Font("SansSerif",Font.BOLD,15);
+        setname.add(SetName);
+
+        Font fontMenu = new Font("SansSerif", Font.BOLD, 15);
         menu.setFont(fontMenu);
         help.setFont(fontMenu);
+        setname.setFont(fontMenu);
     }
 
     public JMenuBar getMenu() {
         menuBar = new JMenuBar();
         menuBar.add(menu);
         menuBar.add(help);
+        menuBar.add(setname);
         return menuBar;
     }
-   
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Thoat) {
@@ -57,10 +66,13 @@ public class MenuController implements ActionListener {
             mainGame.showRule();
         }
         if (e.getSource() == GameMoi) {
-         	mainGame.newGame();
+            mainGame.newGame();
         }
-        if(e.getSource() == CaiDat) {
-        	mainGame.Setting();
+        if (e.getSource() == CaiDat) {
+            mainGame.Setting();
+        }
+        if (e.getSource() == SetName) {
+            mainGame.SetName();
         }
     }
 }
