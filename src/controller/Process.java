@@ -64,9 +64,10 @@ public class Process {
 	public int move(int viTri, int direction) {
 	    int giaTri = squares[viTri].getGiatri();
 
-	    if (giaTri == 0) {
-	        return 0;
-	    }
+	    if (squares[viTri].getGiatri() == 0) {
+            return viTri = 0;
+        }
+
 
 	    squares[viTri].setGiatri(0);
 
