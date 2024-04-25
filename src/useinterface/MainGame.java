@@ -208,4 +208,19 @@ public class MainGame extends JFrame {
 		this.playerName2 = defaultPlayerNames[1];
     }
 	
+	public void showStartScreen() {
+	    getContentPane().remove(gamePanel);
+	    getContentPane().repaint();
+
+	    start = new StartGame(this);
+	    add(start);
+
+	    getContentPane().revalidate();
+	    getContentPane().repaint();
+
+	    this.setJMenuBar(null); 
+
+	    setDefaultPlayerNames();
+	}
+
 }

@@ -11,7 +11,7 @@ public class MenuController implements ActionListener {
     private MainGame mainGame;
     private JMenuBar menuBar;
     private JMenu menu, help, setname;
-    private JMenuItem GameMoi, Thoat, CaiDat, Luat, Them, SetName;
+    private JMenuItem GameMoi, Thoat, CaiDat, Luat, Them, SetName,Back;
 
     public MenuController(MainGame mainGame) {
         super();
@@ -25,6 +25,7 @@ public class MenuController implements ActionListener {
         Luat = new JMenuItem("Rule");
         Them = new JMenuItem("More");
         SetName = new JMenuItem("Set Name");
+        Back = new JMenuItem("Back");
 
         GameMoi.addActionListener(this);
         Thoat.addActionListener(this);
@@ -32,9 +33,11 @@ public class MenuController implements ActionListener {
         Luat.addActionListener(this);
         Them.addActionListener(this);
         SetName.addActionListener(this);
+        Back.addActionListener(this);
 
         menu.add(GameMoi);
         menu.add(CaiDat);
+        menu.add(Back);
         menu.add(Thoat);
         help.add(Luat);
         help.add(Them);
@@ -74,5 +77,9 @@ public class MenuController implements ActionListener {
         if (e.getSource() == SetName) {
             mainGame.SetName();
         }
+        if (e.getSource() == Back) {
+            mainGame.showStartScreen();
+        }
+
     }
 }

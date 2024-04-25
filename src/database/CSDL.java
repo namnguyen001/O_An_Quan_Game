@@ -38,7 +38,7 @@ public class CSDL {
         try {
             con = CSDL.getConnection();
             if (con != null) {
-                String sql = "INSERT INTO Player (Name, Score) VALUES (?, ?)";
+                String sql = "INSERT INTO DatabaseGame (Name, Score) VALUES (?, ?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, playerName);
                 stmt.setInt(2, score);
