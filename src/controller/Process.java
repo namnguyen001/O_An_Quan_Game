@@ -224,6 +224,20 @@ public class Process {
 		}
 	}
 	
+	public boolean KiemTra(int viTri, int player) {
+		if (player == 1) {
+			
+			if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
+				return false;
+			}
+		} else {
+
+			if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	public void setCurrentPlayer(int currentPlayer) {
 	    this.currentPlayer = currentPlayer;

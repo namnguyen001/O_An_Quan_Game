@@ -234,284 +234,322 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		// CLICK HÀNG TRÊN
 		if ((px > 102 && px < 137) && (py < 215 && py > 185)) {
 			System.out.println("left");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 1;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(1,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+					location = 1;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 160 && px < 195) && (py < 215 && py > 185)) {
 			System.out.println("right");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 1;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(1,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+					location = 1;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 
 		}
 
 		if ((px > 196 && px < 232) && (py < 215 && py > 185)) {
 			System.out.println("left-2");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 2;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(2,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+				
+					location = 2;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 255 && px < 293) && (py < 215 && py > 185)) {
 			System.out.println("right-2");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 2;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(2,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+				
+					location = 2;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 
 		}
 
 		if ((px > 296 && px < 332) && (py < 215 && py > 185)) {
 			System.out.println("left-3");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 3;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(3,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+				
+					location = 3;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 355 && px < 391) && (py < 215 && py > 185)) {
 			System.out.println("right-3");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 3;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(3,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+				
+					location = 3;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 393 && px < 429) && (py < 215 && py > 185)) {
 			System.out.println("left-4");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 4;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(4,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+				
+					location = 4;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 452 && px < 488) && (py < 215 && py > 185)) {
 			System.out.println("right-4");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 4;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(4,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+				
+					location = 4;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 491 && px < 527) && (py < 215 && py > 185)) {
 			System.out.println("left-5");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 5;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(5,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+				
+					location = 5;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 551 && px < 587) && (py < 215 && py > 185)) {
 			System.out.println("right-5");
-			if (process.getCurrentPlayer() == 1) {
-				player = 1;
-				location = 5;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(2);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+			if(process.KiemTra(5,1)){
+				if (process.getCurrentPlayer() == 1 ) {
+				
+					location = 5;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(2);
+				} else if(process.getCurrentPlayer() == 2){
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		// CLICK HÀNG DƯỚI
 		if ((px > 102 && px < 137) && (py < 305 && py > 275)) {
 			System.out.println("left");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 11;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(11, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 11;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 160 && px < 195) && (py < 305 && py > 275)) {
 			System.out.println("right");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 11;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(11, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 11;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 196 && px < 232) && (py < 305 && py > 275)) {
 			System.out.println("left-2");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 10;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(10, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 10;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 255 && px < 293) && (py < 305 && py > 275)) {
 			System.out.println("right-2");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 10;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(10, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 10;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 296 && px < 332) && (py < 305 && py > 275)) {
 			System.out.println("left-3");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 9;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(9, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 9;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 355 && px < 391) && (py < 305 && py > 275)) {
 			System.out.println("right-3");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 9;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(9, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 9;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 393 && px < 429) && (py < 305 && py > 275)) {
 			System.out.println("left-4");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 8;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(8, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 8;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 452 && px < 488) && (py < 305 && py > 275)) {
 			System.out.println("right-4");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 8;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(8, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 8;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 491 && px < 527) && (py < 305 && py > 275)) {
 			System.out.println("left-5");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 7;
-				direction = -1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(7, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 7;
+					direction = -1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 
 		if ((px > 551 && px < 587) && (py < 305 && py > 275)) {
 			System.out.println("right-5");
-			if (process.getCurrentPlayer() == 2) {
-				player = 2;
-				location = 7;
-				direction = 1;
-				click = true;
-				process.setCurrentPlayer(1);
-			} else {
-				JOptionPane.showMessageDialog(this,
-						"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+			if (process.KiemTra(7, 2)) {
+				if (process.getCurrentPlayer() == 2) {
+					
+					location = 7;
+					direction = 1;
+					click = true;
+					process.setCurrentPlayer(1);
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+				}
 			}
 		}
 	}
