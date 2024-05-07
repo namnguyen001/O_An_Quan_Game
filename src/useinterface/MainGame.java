@@ -152,7 +152,7 @@ public class MainGame extends JFrame {
 		setupFrame.setLayout(null);
 
 		Font fontMenu = new Font("SansSerif", Font.BOLD, 15);
-		JLabel Player1 = new JLabel("PLayer 1:");
+		JLabel Player1 = new JLabel("Player 1:");
 		Player1.setBounds(50, 20, 150, 30);
 		Player1.setFont(fontMenu);
 		setupFrame.add(Player1);
@@ -162,7 +162,7 @@ public class MainGame extends JFrame {
 		txtPlayer1.setFont(fontMenu);
 		setupFrame.add(txtPlayer1);
 
-		JLabel Player2 = new JLabel("PLayer 2:");
+		JLabel Player2 = new JLabel("Player 2:");
 		Player2.setBounds(50, 90, 150, 30);
 		Player2.setFont(fontMenu);
 		setupFrame.add(Player2);

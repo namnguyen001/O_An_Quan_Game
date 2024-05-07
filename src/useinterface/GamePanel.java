@@ -154,8 +154,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			csdl.addToDatabase(winnerName, winnerScore);
 			try {
 				PrintWriter wt = new PrintWriter(new FileWriter("src/database/History.txt", true));
-				wt.println(winnerName);
-				wt.println(winnerScore);
+				wt.println("Name: "+winnerName);
+				wt.println("Score: "+winnerScore);
 				wt.flush();
 				wt.close();
 				System.out.println("Recorded successfully");
@@ -172,8 +172,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			csdl.addToDatabase(winnerName, winnerScore);
 			try {
 				PrintWriter wt = new PrintWriter(new FileWriter("src/database/History.txt", true));
-				wt.println(winnerName);
-				wt.println(winnerScore);
+				wt.println("Name: "+winnerName);
+				wt.println("Score: "+winnerScore);
 				wt.flush();
 				wt.close();
 				System.out.println("Recorded successfully");
@@ -241,8 +241,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -256,8 +255,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 
@@ -273,8 +271,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -289,8 +286,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 
@@ -300,14 +296,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("left-3");
 			if(process.KiemTra(3,1)){
 				if (process.getCurrentPlayer() == 1 ) {
-				
 					location = 3;
 					direction = -1;
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It" + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -316,14 +310,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right-3");
 			if(process.KiemTra(3,1)){
 				if (process.getCurrentPlayer() == 1 ) {
-				
 					location = 3;
 					direction = 1;
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -332,14 +324,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("left-4");
 			if(process.KiemTra(4,1)){
 				if (process.getCurrentPlayer() == 1 ) {
-				
 					location = 4;
 					direction = -1;
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -348,14 +338,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right-4");
 			if(process.KiemTra(4,1)){
 				if (process.getCurrentPlayer() == 1 ) {
-				
 					location = 4;
 					direction = 1;
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -364,14 +352,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("left-5");
 			if(process.KiemTra(5,1)){
 				if (process.getCurrentPlayer() == 1 ) {
-				
 					location = 5;
 					direction = -1;
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -380,14 +366,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right-5");
 			if(process.KiemTra(5,1)){
 				if (process.getCurrentPlayer() == 1 ) {
-				
 					location = 5;
 					direction = 1;
 					click = true;
 					process.setCurrentPlayer(2);
 				} else if(process.getCurrentPlayer() == 2){
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[1] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[1] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -397,14 +381,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("left");
 			if (process.KiemTra(11, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 11;
 					direction = -1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -413,14 +395,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right");
 			if (process.KiemTra(11, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 11;
 					direction = 1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -429,14 +409,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("left-2");
 			if (process.KiemTra(10, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 10;
 					direction = -1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -445,14 +423,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right-2");
 			if (process.KiemTra(10, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 10;
 					direction = 1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -461,14 +437,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("left-3");
 			if (process.KiemTra(9, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 9;
 					direction = -1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -477,14 +451,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right-3");
 			if (process.KiemTra(9, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 9;
 					direction = 1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -493,14 +465,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("left-4");
 			if (process.KiemTra(8, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 8;
 					direction = -1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -509,14 +479,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right-4");
 			if (process.KiemTra(8, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 8;
 					direction = 1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -525,14 +493,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("left-5");
 			if (process.KiemTra(7, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 7;
 					direction = -1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}
@@ -541,14 +507,12 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			System.out.println("right-5");
 			if (process.KiemTra(7, 2)) {
 				if (process.getCurrentPlayer() == 2) {
-					
 					location = 7;
 					direction = 1;
 					click = true;
 					process.setCurrentPlayer(1);
 				} else {
-					JOptionPane.showMessageDialog(this,
-							"It is " + playerNames[0] + "'s  turn now, please wait for your turn.");
+					JOptionPane.showMessageDialog(this,"It " + playerNames[0] + "'s  turn now, please wait for your turn.");
 				}
 			}
 		}

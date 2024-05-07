@@ -38,8 +38,8 @@ public class Box {
 			imagebox = new ImageIcon("src/images/square.png").getImage(); 
 			imageleft = new ImageIcon("src/images/left.jpg").getImage(); 
 			imageright = new ImageIcon("src/images/right.jpg").getImage(); 
-			imagebox2 = new ImageIcon("src/images/box2.jpg").getImage(); 
-			imagebox1 = new ImageIcon("src/images/box1.jpg").getImage(); 
+			imagebox2 = new ImageIcon("src/images/score.png").getImage(); 
+			imagebox1 = new ImageIcon("src/images/score.png").getImage(); 
 			flag = new ImageIcon("src/images/flag.jpg").getImage(); 
 			buttonImage = new ImageIcon("src/images/square.jpg").getImage();
 			leftArrow = new ImageIcon("src/images/aleft.jpg").getImage();

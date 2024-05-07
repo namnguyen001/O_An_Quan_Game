@@ -12,3 +12,13 @@ Player 2
 36
 Player 1
 35
+Ok2
+49
+Name: Player 1
+Score: 38
+Name: Ôn
+Score: 27
+Name: Player 2
+Score: 35
+Name: Player 2
+Score: 54
