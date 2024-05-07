@@ -198,25 +198,30 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	}
 
 	public void reDraw() {
-		if (thread != null) {
-			thread.interrupt();
-		}
+	    if (thread != null) {
+	        thread.interrupt();
+	    }
 
-		removeMouseListener(this);
-		removeMouseMotionListener(this);
-		process = new Process();
-		table = new Table(process.getSquares());
-		addMouseListener(this);
-		addMouseMotionListener(this);
-		process.setCurrentPlayer(1);
-		index = 0;
-		diem = 0;
-		click = false;
-		thread = new Thread(this);
-		thread.start();
-		csdl = new CSDL();
-		repaint();
+	    removeMouseListener(this);
+	    removeMouseMotionListener(this);
+	    process = new Process();
+	    table = new Table(process.getSquares());
+	    addMouseListener(this);
+	    addMouseMotionListener(this);
+	    player = 1; // Reset to Player 1
+	    click = false; // Reset click status
+	    location = 0; // Reset location
+	    direction = 0; // Reset direction
+	    process.setCurrentPlayer(1); // Set current player to Player 1
+	    index = 0; // Reset index
+	    diem = 0; // Reset diem
+	    thread = new Thread(this);
+	    thread.start();
+	    csdl = new CSDL();
+	    String[] playerNames = mainGame.getPlayerNames(); // Update player names
+	    repaint();
 	}
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
