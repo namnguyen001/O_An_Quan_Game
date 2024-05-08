@@ -4,11 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import controller.Process;
@@ -16,6 +12,7 @@ import gameinterface.*;
 import gameinterface.Box;
 import database.CSDL;
 import javax.sound.sampled.*;
+
 
 public class GamePanel extends JPanel implements MouseListener, MouseMotionListener, Runnable {
 	private Table table;
@@ -31,7 +28,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	private CSDL csdl;
 	private String[] playerNames;
 	private Thread soundThread;
-    private String soundFilePath = "data/nhac1.wav";
+    private String soundFilePath = "data/music.wav";
 	private boolean isSoundPlaying = false;
 	
 	public GamePanel(MainGame mainGame) {
@@ -45,10 +42,11 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		thread = new Thread(this);
 		thread.start();
 		soundThread = new Thread(this::SoundPlayer);
-        soundThread.start(); // Bắt đầu luồng
+		soundThread.start();
 		this.mainGame = mainGame;
 		csdl = new CSDL();
 		playerNames = mainGame.getPlayerNames();
+
 	}
 
 	@Override
@@ -69,8 +67,6 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 
 	@Override
 	public void run() {
-		soundThread.interrupt();
-		isSoundPlaying = true;
 		while (!Thread.currentThread().isInterrupted() && !process.finish()) {
 			index = 0;
 			process.setScores(new ArrayList<>());
@@ -193,6 +189,9 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			JOptionPane.showMessageDialog(null, "It's a tie!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
+		soundThread.interrupt();
+		isSoundPlaying = true;
+		
 	}
 
 	public void setMoveSpeed(int newSpeed) {
@@ -208,31 +207,34 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	}
 
 	public void reDraw() {
+	    // Dọn dẹp trạng thái cũ của trò chơi
 	    if (thread != null) {
 	        thread.interrupt();
-			
 	    }
-
 	    removeMouseListener(this);
 	    removeMouseMotionListener(this);
+
+	    // Tạo trò chơi mới
 	    process = new Process();
 	    table = new Table(process.getSquares());
 	    addMouseListener(this);
 	    addMouseMotionListener(this);
-	    player = 1; // Reset to Player 1
-	    click = false; // Reset click status
-	    location = 0; // Reset location
-	    direction = 0; // Reset direction
-	    process.setCurrentPlayer(1); // Set current player to Player 1
-	    index = 0; // Reset index
-	    diem = 0; // Reset diem
+	    player = 1;
+	    click = false;
+	    location = 0;
+	    direction = 0;
+	    process.setCurrentPlayer(1);
+	    index = 0;
+	    diem = 0;
 	    thread = new Thread(this);
 	    thread.start();
 	    csdl = new CSDL();
-		
-	    String[] playerNames = mainGame.getPlayerNames(); // Update player names
+
+	    // Cập nhật giao diện
+	    String[] playerNames = mainGame.getPlayerNames();
 	    repaint();
 	}
+
 
 
 	@Override
@@ -563,26 +565,22 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		repaint();
 	}
 	
-	 public void SoundPlayer() {
-        try {
-            File filemusic = new File(soundFilePath);
-            if (filemusic.exists()) {
-                while (true) { // Lặp vô hạn
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(filemusic);
-                    Clip clip = AudioSystem.getClip();
-                    clip.open(inputStream);
-                    System.out.println("Phát âm thanh...");
-                    clip.start();
-                    clip.drain(); // Chờ cho âm thanh kết thúc
-                    clip.close(); // Đóng Clip để giải phóng tài nguyên
-                }
-            } else {
-                System.out.println("Không tìm thấy tệp âm thanh");
-            }
-        } catch (Exception e) {
-            System.err.println("Lỗi phát âm thanh: " + e.getMessage());
-        }
-    }
+	public void SoundPlayer() {
+	    try {
+	        File filemusic = new File(soundFilePath);
+	        if (filemusic.exists()) {
+	            AudioInputStream inputStream = AudioSystem.getAudioInputStream(filemusic);
+	            Clip clip = AudioSystem.getClip();
+	            clip.open(inputStream);
+	            clip.start();
+	        } else {
+	            System.out.println("Audio file not found");
+	        }
+	    } catch (Exception e) {
+	        System.err.println("Audio playback error: " + e.getMessage());
+	    }
+	}
+
 	public void setSoundPlaying(boolean isPlaying) {
         this.isSoundPlaying = isPlaying;
     }
