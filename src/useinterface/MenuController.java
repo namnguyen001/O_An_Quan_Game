@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class MenuController implements ActionListener {
+    private GamePanel gamePanel;
     private MainGame mainGame;
     private JMenuBar menuBar;
     private JMenu menu, help, setname;
@@ -70,6 +71,7 @@ public class MenuController implements ActionListener {
         }
         if (e.getSource() == GameMoi) {
             mainGame.newGame();
+            
         }
         if (e.getSource() == CaiDat) {
             mainGame.Setting();
@@ -82,4 +84,5 @@ public class MenuController implements ActionListener {
         }
 
     }
+    
 }

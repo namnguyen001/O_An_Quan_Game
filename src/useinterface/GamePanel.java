@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import controller.Process;
 import gameinterface.*;
 import gameinterface.Box;
 import database.CSDL;
+import javax.sound.sampled.*;
 
 public class GamePanel extends JPanel implements MouseListener, MouseMotionListener, Runnable {
 	private Table table;
@@ -28,7 +30,10 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	private MainGame mainGame;
 	private CSDL csdl;
 	private String[] playerNames;
-
+	private Thread soundThread;
+    private String soundFilePath = "data/nhac1.wav";
+	private boolean isSoundPlaying = false;
+	
 	public GamePanel(MainGame mainGame) {
 		process = new Process();
 		table = new Table(process.getSquares());
@@ -39,6 +44,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		co = new ImageIcon("src/images/co1.png").getImage();
 		thread = new Thread(this);
 		thread.start();
+		soundThread = new Thread(this::SoundPlayer);
+        soundThread.start(); // Bắt đầu luồng
 		this.mainGame = mainGame;
 		csdl = new CSDL();
 		playerNames = mainGame.getPlayerNames();
@@ -62,6 +69,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 
 	@Override
 	public void run() {
+		soundThread.interrupt();
+		isSoundPlaying = true;
 		while (!Thread.currentThread().isInterrupted() && !process.finish()) {
 			index = 0;
 			process.setScores(new ArrayList<>());
@@ -154,8 +163,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 			csdl.addToDatabase(winnerName, winnerScore);
 			try {
 				PrintWriter wt = new PrintWriter(new FileWriter("src/database/History.txt", true));
-				wt.println("Name: "+winnerName);
-				wt.println("Score: "+winnerScore);
+				wt.println("Name: " + winnerName);
+				wt.println("Score: " + winnerScore);
 				wt.flush();
 				wt.close();
 				System.out.println("Recorded successfully");
@@ -183,6 +192,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		} else {
 			JOptionPane.showMessageDialog(null, "It's a tie!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
+		
 	}
 
 	public void setMoveSpeed(int newSpeed) {
@@ -200,6 +210,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	public void reDraw() {
 	    if (thread != null) {
 	        thread.interrupt();
+			
 	    }
 
 	    removeMouseListener(this);
@@ -218,6 +229,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	    thread = new Thread(this);
 	    thread.start();
 	    csdl = new CSDL();
+		
 	    String[] playerNames = mainGame.getPlayerNames(); // Update player names
 	    repaint();
 	}
@@ -550,5 +562,29 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		table.mouseMoved(e);
 		repaint();
 	}
-
+	
+	 public void SoundPlayer() {
+        try {
+            File filemusic = new File(soundFilePath);
+            if (filemusic.exists()) {
+                while (true) { // Lặp vô hạn
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(filemusic);
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(inputStream);
+                    System.out.println("Phát âm thanh...");
+                    clip.start();
+                    clip.drain(); // Chờ cho âm thanh kết thúc
+                    clip.close(); // Đóng Clip để giải phóng tài nguyên
+                }
+            } else {
+                System.out.println("Không tìm thấy tệp âm thanh");
+            }
+        } catch (Exception e) {
+            System.err.println("Lỗi phát âm thanh: " + e.getMessage());
+        }
+    }
+	public void setSoundPlaying(boolean isPlaying) {
+        this.isSoundPlaying = isPlaying;
+    }
+	
 }

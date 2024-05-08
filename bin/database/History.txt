@@ -24,3 +24,9 @@ Name: Player 2
 Score: 54
 Name: Không
 Score: 37
+Name: Player 2
+Score: 42
+Name: Player 2
+Score: 34
+Name: ẻg
+Score: 50

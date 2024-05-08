@@ -43,15 +43,15 @@ public class MainGame extends JFrame {
 
 		gamePanel = new GamePanel(this);
 		process = new Process();
-
         this.setVisible(true);
     }
 
     public void createnewgame() {
+		
         getContentPane().remove(start);
         getContentPane().repaint();
 
-		gamePanel = new GamePanel(this);
+		
 		getContentPane().add(gamePanel);
 
         getContentPane().revalidate();
@@ -88,6 +88,7 @@ public class MainGame extends JFrame {
 	    int option = JOptionPane.showConfirmDialog(this, "Do you want to play again??", "Retard alert",
 	            JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 	    if (option == JOptionPane.YES_OPTION) {
+			
 	        this.setDefaultPlayerNames();
 	        this.gamePanel.reDraw();
 	    }
@@ -223,4 +224,6 @@ public class MainGame extends JFrame {
 	    setDefaultPlayerNames();
 	}
 
+	
+	
 }
