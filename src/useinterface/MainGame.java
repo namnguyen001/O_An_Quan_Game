@@ -40,9 +40,9 @@ public class MainGame extends JFrame {
 
         start = new StartGame(this);
         add(start);
-
 		gamePanel = new GamePanel(this);
 		process = new Process();
+		gamePanel.Music();
         this.setVisible(true);
     }
 
@@ -51,7 +51,7 @@ public class MainGame extends JFrame {
         getContentPane().remove(start);
         getContentPane().repaint();
 
-		
+		gamePanel = new GamePanel(this);
 		getContentPane().add(gamePanel);
 
         getContentPane().revalidate();

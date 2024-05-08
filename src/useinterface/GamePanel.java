@@ -41,14 +41,17 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		co = new ImageIcon("src/images/co1.png").getImage();
 		thread = new Thread(this);
 		thread.start();
-		soundThread = new Thread(this::SoundPlayer);
-		soundThread.start();
 		this.mainGame = mainGame;
 		csdl = new CSDL();
 		playerNames = mainGame.getPlayerNames();
 
 	}
-
+	
+	public void Music(){
+		soundThread = new Thread(this::SoundPlayer);
+		soundThread.start();
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -573,6 +576,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	            Clip clip = AudioSystem.getClip();
 	            clip.open(inputStream);
 	            clip.start();
+				
 	        } else {
 	            System.out.println("Audio file not found");
 	        }
