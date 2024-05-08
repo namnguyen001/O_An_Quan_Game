@@ -17,90 +17,86 @@ public class MainGame extends JFrame {
 	private JLabel jlabel;
 	private MenuController menuControl;
 	private GamePanel gamePanel;
-	public int currentTeam = 0;
-	int numberInBox = 5;
-	int numberInScoreBox = 10;
+	public int currentTeam = 0, numberInBox = 5, numberInScoreBox = 10;
 	private StartGame start;
 	private Process process;
 	private MainGame mainGame;
 	private Table table;
 	private Box[] boxs = new Box[14];
-	private String playerName1 = "Player 1";
-	private String playerName2 = "Player 2";
-	private String[] defaultPlayerNames = {"Player 1", "Player 2"};
-	
-	
-    public MainGame() {
-        this.setTitle("Ô Ăn Quan");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private String playerName1 = "Player 1", playerName2 = "Player 2";
+	private String[] defaultPlayerNames = { "Player 1", "Player 2" };
 
-        setSize(713, 600);
-        setLocationRelativeTo(null);
-        setResizable(false);
+	public MainGame() {
+		this.setTitle("Ô Ăn Quan");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        start = new StartGame(this);
-        add(start);
+		setSize(713, 600);
+		setLocationRelativeTo(null);
+		setResizable(false);
+
+		start = new StartGame(this);
+		add(start);
 		gamePanel = new GamePanel(this);
 		process = new Process();
 		gamePanel.Music();
-        this.setVisible(true);
-    }
+		this.setVisible(true);
+	}
 
-    public void createnewgame() {
-		
-        getContentPane().remove(start);
-        getContentPane().repaint();
+	public void createnewgame() {
+
+		getContentPane().remove(start);
+		getContentPane().repaint();
 
 		gamePanel = new GamePanel(this);
 		getContentPane().add(gamePanel);
 
-        getContentPane().revalidate();
-        getContentPane().repaint();
+		getContentPane().revalidate();
+		getContentPane().repaint();
 
-        menuControl = new MenuController(this);
-        this.setJMenuBar(menuControl.getMenu());
-    }
+		menuControl = new MenuController(this);
+		this.setJMenuBar(menuControl.getMenu());
+	}
 
-    public void setTextJlabel(String s) {
-        this.jlabel.setText(s);
-    }
+	public void setTextJlabel(String s) {
+		this.jlabel.setText(s);
+	}
 
-    void showMore() {
-        String s = "The game simulates the Ô Ăn Quan .\nAuthor: NG.\nHave fun.";
-        JOptionPane.showMessageDialog(this, s, "Ô Ăn Quan", JOptionPane.PLAIN_MESSAGE);
-    }
+	void showMore() {
+		String s = "The game simulates the Ô Ăn Quan .\nAuthor: NG.\nHave fun.";
+		JOptionPane.showMessageDialog(this, s, "Ô Ăn Quan", JOptionPane.PLAIN_MESSAGE);
+	}
 
-    void showRule() {
-        JLabel content = new JLabel("<html>" + "<h1>How to play</h1>" + "<p>"
-                + "Mouse over one of the five cells belonging to your side.<br>"
-                + "An arrow will appear depending on whether the mouse pointer is to the left or right of the cell, showing the direction.<br>"
-                + "Click on the box to make a move.<br>" + "The game ends when both squares have been taken.<br>"
-                + "</p>" + "<h1>Hướng dẫn chơi game</h1>" + "<p>"
-                + "Đưa chuột lên một trong năm ô thuộc về bên của bạn.<br>"
-                + "Nếu bạn đưa chuột về bên phải ô sẽ hiện lên ▶, nếu đưa chuột về bên trái ô sẽ hiện lên ◀, tương ứng với chiều rải quân.<br>"
-                + "Bạn click chuột để thực hiện nước đi của mình.<br>"
-                + "Trò chơi kết thúc khi hai ô quan đã được ăn hết.<br>" + "</html>");
-        content.setBorder(new EmptyBorder(1, 1, 1, 1));
-        JOptionPane.showMessageDialog(this, content, "Rule", JOptionPane.PLAIN_MESSAGE);
-    }
+	void showRule() {
+		JLabel content = new JLabel("<html>" + "<h1>How to play</h1>" + "<p>"
+				+ "Mouse over one of the five cells belonging to your side.<br>"
+				+ "An arrow will appear depending on whether the mouse pointer is to the left or right of the cell, showing the direction.<br>"
+				+ "Click on the box to make a move.<br>" + "The game ends when both squares have been taken.<br>"
+				+ "</p>" + "<h1>Hướng dẫn chơi game</h1>" + "<p>"
+				+ "Đưa chuột lên một trong năm ô thuộc về bên của bạn.<br>"
+				+ "Nếu bạn đưa chuột về bên phải ô sẽ hiện lên ▶, nếu đưa chuột về bên trái ô sẽ hiện lên ◀, tương ứng với chiều rải quân.<br>"
+				+ "Bạn click chuột để thực hiện nước đi của mình.<br>"
+				+ "Trò chơi kết thúc khi hai ô quan đã được ăn hết.<br>" + "</html>");
+		content.setBorder(new EmptyBorder(1, 1, 1, 1));
+		JOptionPane.showMessageDialog(this, content, "Rule", JOptionPane.PLAIN_MESSAGE);
+	}
 
 	public void newGame() {
-	    int option = JOptionPane.showConfirmDialog(this, "Do you want to play again??", "Retard alert",
-	            JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-	    if (option == JOptionPane.YES_OPTION) {
-			
-	        this.setDefaultPlayerNames();
-	        this.gamePanel.reDraw();
-	    }
+		int option = JOptionPane.showConfirmDialog(this, "Do you want to play again??", "Retard alert",
+				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		if (option == JOptionPane.YES_OPTION) {
+
+			this.setDefaultPlayerNames();
+			this.gamePanel.reDraw();
+		}
 	}
-	
-    public void Exit() {
-        int option = JOptionPane.showConfirmDialog(this, "Do you want to exit?", "Retard alert",
-                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        if (option == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
-    }
+
+	public void Exit() {
+		int option = JOptionPane.showConfirmDialog(this, "Do you want to exit?", "Retard alert",
+				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		if (option == JOptionPane.YES_OPTION) {
+			System.exit(0);
+		}
+	}
 
 	void Setting() {
 		JFrame setupFrame = new JFrame("Setting");
@@ -199,31 +195,29 @@ public class MainGame extends JFrame {
 		setupFrame.setLocationRelativeTo(this);
 		setupFrame.setVisible(true);
 	}
-	
-	public String[] getPlayerNames(){
-	    return new String[]{playerName1, playerName2};
+
+	public String[] getPlayerNames() {
+		return new String[] { playerName1, playerName2 };
 	}
-	
+
 	public void setDefaultPlayerNames() {
 		this.playerName1 = defaultPlayerNames[0];
 		this.playerName2 = defaultPlayerNames[1];
-    }
-	
-	public void showStartScreen() {
-	    getContentPane().remove(gamePanel);
-	    getContentPane().repaint();
-
-	    start = new StartGame(this);
-	    add(start);
-
-	    getContentPane().revalidate();
-	    getContentPane().repaint();
-
-	    this.setJMenuBar(null); 
-
-	    setDefaultPlayerNames();
 	}
 
-	
-	
+	public void showStartScreen() {
+		getContentPane().remove(gamePanel);
+		getContentPane().repaint();
+
+		start = new StartGame(this);
+		add(start);
+
+		getContentPane().revalidate();
+		getContentPane().repaint();
+
+		this.setJMenuBar(null);
+
+		setDefaultPlayerNames();
+	}
+
 }

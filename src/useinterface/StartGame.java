@@ -16,11 +16,8 @@ public class StartGame extends JPanel implements ActionListener {
 
 	MainGame mainGame;
 
-	/**
-	 * Create the panel.
-	 */
 	public StartGame(MainGame mainGame) {
-		this.mainGame = mainGame; 
+		this.mainGame = mainGame;
 
 		title = new JLabel("Ô Ăn Quan", JLabel.CENTER);
 		setBackground(new Color(128, 255, 128));
@@ -53,13 +50,13 @@ public class StartGame extends JPanel implements ActionListener {
 
 		textArea = new JTextArea();
 		textArea.setEditable(false);
-		textArea.setBounds(100, 200, 870, 708); 
-		textArea.setVisible(false); 
+		textArea.setBounds(100, 200, 870, 708);
+		textArea.setVisible(false);
 		add(textArea);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(
-	    StartGame.class.getResource("/images/nhung-tranh-ve-ve-tro-choi-dan-gian-hay-nhat_053508041 (1).jpg")));
+				StartGame.class.getResource("/images/nhung-tranh-ve-ve-tro-choi-dan-gian-hay-nhat_053508041 (1).jpg")));
 		lblNewLabel.setBounds(0, 0, 720, 600);
 		add(lblNewLabel);
 
@@ -72,16 +69,14 @@ public class StartGame extends JPanel implements ActionListener {
 		} else if (e.getSource() == btnNewButton_1) {
 			if (!historyVisible) {
 				try {
-					
-					JFrame historyFrame = new JFrame("History");
-					historyFrame.setSize(500, 500); 
-					historyFrame.setLocationRelativeTo(null); 
 
-					
+					JFrame historyFrame = new JFrame("History");
+					historyFrame.setSize(500, 500);
+					historyFrame.setLocationRelativeTo(null);
+
 					JTextArea textArea = new JTextArea();
 					textArea.setEditable(false);
 
-					
 					JScrollPane scrollPane = new JScrollPane(textArea);
 					historyFrame.add(scrollPane);
 					historyFrame.setResizable(false);

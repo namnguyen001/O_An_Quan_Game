@@ -3,7 +3,6 @@ package controller;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
 import gameinterface.*;
 import gameinterface.Box;
 import useinterface.*;
@@ -15,7 +14,7 @@ public class Process {
 	Box[] boxs = new Box[14];
 	private Score[] scBox;
 	private Table table;
-	private int currentPlayer=1;
+	private int currentPlayer = 1;
 
 	public Process() {
 		scores = new ArrayList<>();
@@ -62,41 +61,39 @@ public class Process {
 	}
 
 	public int move(int viTri, int direction) {
-	    int giaTri = squares[viTri].getGiatri();
+		int giaTri = squares[viTri].getGiatri();
 
-	    if (squares[viTri].getGiatri() == 0) {
-            return viTri = 0;
-        }
+		if (squares[viTri].getGiatri() == 0) {
+			return viTri = 0;
+		}
 
+		squares[viTri].setGiatri(0);
 
-	    squares[viTri].setGiatri(0);
-
-	    while (giaTri != 0) {
-	        viTri += direction;
-	        if (viTri == 12) {
-	            viTri = 0;
-	        } else if (viTri == -1) {
-	            viTri = 11;
-	        }
-	        squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
-	        giaTri--;
-	        System.out.println("Vitri: " + viTri);
-	        Score score = new Score(copysSquares(squares));
-	        scores.add(score);
-	    }
-	    viTri += direction;
-	    if (viTri == 12) {
-	        viTri = 0;
-	    } else if (viTri == -1) {
-	        viTri = 11;
-	    }
-	    if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
-	        return move(viTri, direction);
-	    } else {
-	        return viTri--;
-	    }
+		while (giaTri != 0) {
+			viTri += direction;
+			if (viTri == 12) {
+				viTri = 0;
+			} else if (viTri == -1) {
+				viTri = 11;
+			}
+			squares[viTri].setGiatri(squares[viTri].getGiatri() + 1);
+			giaTri--;
+			System.out.println("Vitri: " + viTri);
+			Score score = new Score(copysSquares(squares));
+			scores.add(score);
+		}
+		viTri += direction;
+		if (viTri == 12) {
+			viTri = 0;
+		} else if (viTri == -1) {
+			viTri = 11;
+		}
+		if (squares[viTri].getGiatri() != 0 && viTri % 6 != 0) {
+			return move(viTri, direction);
+		} else {
+			return viTri--;
+		}
 	}
-
 
 	public int kill(int viTri, int direction) {
 		if (squares[viTri].getGiatri() == 0 && viTri % 6 != 0) {
@@ -203,7 +200,7 @@ public class Process {
 				return 5;
 			}
 		} else {
-			int diem = squares[13].getGiatri();
+			int diem = squares[12].getGiatri();
 			if (diem <= 5) {
 				for (int i = 7; i < 7 + diem; i++) {
 					squares[i].setGiatri(1);
@@ -223,10 +220,10 @@ public class Process {
 			}
 		}
 	}
-	
+
 	public boolean KiemTra(int viTri, int player) {
 		if (player == 1) {
-			
+
 			if (squares[viTri].getGiatri() == 0 || viTri % 6 == 0) {
 				return false;
 			}
@@ -240,10 +237,10 @@ public class Process {
 	}
 
 	public void setCurrentPlayer(int currentPlayer) {
-	    this.currentPlayer = currentPlayer;
+		this.currentPlayer = currentPlayer;
 	}
 
 	public int getCurrentPlayer() {
-	    return this.currentPlayer;
+		return this.currentPlayer;
 	}
 }

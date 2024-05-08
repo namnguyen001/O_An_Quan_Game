@@ -11,9 +11,7 @@ public class Box {
 	private int vitri;
 	public int giatri;
 	public boolean isquan;
-	private Image imagesquare;
-	private Image imageleft, imageright, buttonImage, imagebox;
-	private Image imagebox1, imagebox2, flag;
+	private Image imagesquare, imageleft, imageright, buttonImage, imagebox, imagebox1, imagebox2, flag;
 	private boolean isArrowVisible;
 	private Image leftArrow, rightArrow;
 	public boolean[] isQuan;
@@ -35,12 +33,12 @@ public class Box {
 
 	public void getImage() {
 		try {
-			imagebox = new ImageIcon("src/images/square.png").getImage(); 
-			imageleft = new ImageIcon("src/images/left.jpg").getImage(); 
-			imageright = new ImageIcon("src/images/right.jpg").getImage(); 
-			imagebox2 = new ImageIcon("src/images/score.png").getImage(); 
-			imagebox1 = new ImageIcon("src/images/score.png").getImage(); 
-			flag = new ImageIcon("src/images/flag.jpg").getImage(); 
+			imagebox = new ImageIcon("src/images/square.png").getImage();
+			imageleft = new ImageIcon("src/images/left.jpg").getImage();
+			imageright = new ImageIcon("src/images/right.jpg").getImage();
+			imagebox2 = new ImageIcon("src/images/score.png").getImage();
+			imagebox1 = new ImageIcon("src/images/score.png").getImage();
+			flag = new ImageIcon("src/images/flag.jpg").getImage();
 			buttonImage = new ImageIcon("src/images/square.jpg").getImage();
 			leftArrow = new ImageIcon("src/images/aleft.jpg").getImage();
 			rightArrow = new ImageIcon("src/images/aright.jpg").getImage();
@@ -52,7 +50,7 @@ public class Box {
 	public void draw(Graphics2D g2d) {
 		g2d.setFont(new Font("NewellsHand", Font.BOLD, 20));
 		g2d.setColor(Color.BLACK);
-		
+
 		if (!isquan && vitri != 12 && vitri != 13) {
 			g2d.drawImage(imagesquare, x, y, width, height, null);
 			g2d.drawString(giatri + "", x + 40, y + 20);
@@ -86,7 +84,6 @@ public class Box {
 		}
 	}
 
-	
 	public void mouseEntered(MouseEvent e) {
 		if (!isquan && vitri != 12 && vitri != 13 && vitri > 0) {
 			Point p = e.getPoint();
@@ -113,9 +110,9 @@ public class Box {
 
 	public void mouseExited(MouseEvent e) {
 		if (!isquan && vitri != 12 && vitri != 13 && giatri > 0) {
-			Point p = e.getPoint();// Lấy tọa độ chuột
-			int px = (int) p.getX();// tọa độ x
-			int py = (int) p.getY();// tọa độ y
+			Point p = e.getPoint();
+			int px = (int) p.getX();
+			int py = (int) p.getY();
 			if ((px <= x || px >= x + width) || (py <= y || py >= y + height)) {
 				imagesquare = imagebox;
 				isArrowVisible = false;
